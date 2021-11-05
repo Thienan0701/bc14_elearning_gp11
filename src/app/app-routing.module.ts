@@ -13,6 +13,11 @@ const routes: Routes = [
     path: "admin",
     loadChildren: ()=> import("./pages/admin-template/admin-template.module").then((m)=>m.AdminTemplateModule)
   },
+  {
+    path: "auth",
+    loadChildren: ()=> import("./pages/auth/auth.module").then((m)=>m.AuthModule)
+  },
+
 ];
 
 @NgModule({

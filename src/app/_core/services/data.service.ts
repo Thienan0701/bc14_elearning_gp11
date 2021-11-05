@@ -21,6 +21,36 @@ export class DataService {
     )
     // return observable;
   }
+
+  getDetailCourse(id: any): Observable<any>{
+    const url = `https://elearning0706.cybersoft.edu.vn/api/QuanLyKhoaHoc/LayThongTinKhoaHoc?maKhoaHoc=${id}`
+    return this.http.get(url).pipe(
+      tap(()=>{}),
+      catchError((error: any)=>{
+        return this.handleErrors(error);
+      })
+    )
+  }
+
+  registerUser(user: any): Observable<any> {
+    const url = `https://elearning0706.cybersoft.edu.vn/api/QuanLyNguoiDung/DangKy`
+    return this.http.post(url, user).pipe(
+      tap(()=>{}),
+      catchError((error: any)=>{
+        return this.handleErrors(error);
+      })
+    )
+  }
+
+  loginUser(user: any): Observable<any> {
+    const url = "https://elearning0706.cybersoft.edu.vn/api/QuanLyNguoiDung/DangNhap"
+    return this.http.post(url, user).pipe(
+      tap(()=>{}),
+      catchError((error: any)=>{
+        return this.handleErrors(error);
+      })
+    )
+  }
   handleErrors(error: any) {
     switch (error.status) {
       case 300:
