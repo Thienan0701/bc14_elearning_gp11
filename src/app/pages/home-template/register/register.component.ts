@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, HostListener } from '@angular/core';
 import { DataService } from 'src/app/_core/services/data.service';
 
 @Component({
@@ -7,7 +7,7 @@ import { DataService } from 'src/app/_core/services/data.service';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-
+  @ViewChild('registerForm') registerForm: any;
   constructor(private data : DataService) { }
 
   ngOnInit(): void {
@@ -15,8 +15,12 @@ export class RegisterComponent implements OnInit {
 
   register(user: any) {
     user.maNhom = 'GP01';
-    this.data.registerUser(user).subscribe((result) => {
+    this.data.post("QuanLyNguoiDung/DangKy",user).subscribe((result) => {
       console.log(result);
     });
+  }
+  @HostListener('window:beforeunload', ['$event'])
+  canDeactivateRegister(){
+    return !this.registerForm.dirty;
   }
 }

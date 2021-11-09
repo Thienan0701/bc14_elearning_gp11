@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CandeactivateGuard } from 'src/app/_core/guards/candeactivate.guard';
 import { RegisterComponent } from './register.component';
 
 const routes: Routes = [
   {
     path:"",
-    component: RegisterComponent
+    component: RegisterComponent,
+    canDeactivate: [CandeactivateGuard]
   }
 ];
 
