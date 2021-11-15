@@ -40,6 +40,33 @@
           >Register</a
         >
       </li>
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          type="button"
+          data-toggle="collapse"
+          data-target="#collapseExample"
+        >
+          <span class="navbar-toggler-icon"></span>Menu
+        </a>
+        <div class="collapse" id="collapseExample">
+          <span class="row">
+            <ng-container *ngIf="listDanhMuc">
+              <div
+                class="col-sm-6"
+                *ngFor="let item of listDanhMuc; let index = index"
+              >
+                <a
+                  class="nav-link"
+                  href="/list-course-menu/{{ item.maDanhMuc }}"
+                  routerLinkActive="active"
+                  >{{ item.tenDanhMuc }}</a
+                >
+              </div>
+            </ng-container>
+          </span>
+        </div>
+      </li>
     </ul>
   </div>
 </nav>

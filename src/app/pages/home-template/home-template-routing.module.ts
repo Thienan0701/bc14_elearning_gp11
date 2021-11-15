@@ -34,6 +34,11 @@ const routes: Routes = [
         path: "register",
         loadChildren: ()=>import("./register/register.module").then((m)=>m.RegisterModule),
       },
+      //Menu click
+      {
+        path: "list-course-menu/:id",
+        loadChildren: ()=>import("./courses-from-menu/courses-from-menu.module").then((m)=>m.CoursesFromMenuModule)
+      }
     ]
   },
 ];

@@ -1,0 +1,21 @@
+<div class="card">
+  <img class="card-img-top" [src]="course.hinhAnh" alt="Card image cap" />
+  <div class="card-body">
+    <h5 class="card-title">{{ course.tenKhoaHoc }}</h5>
+    <p class="card-text text-truncate">
+      {{ course.moTa }}
+    </p>
+    <!-- Truyen 1 param -->
+    <!-- <a class="btn btn-success" routerLink="/detail/{{ course.maKhoaHoc }}"
+      >Detail</a
+    > -->
+
+    <!-- Truyen nhieu params -->
+    <a
+      class="btn btn-success"
+      routerLink="/detail/{{ course.maKhoaHoc }}"
+      [queryParams]="{ tenKhoaHoc: course.tenKhoaHoc, biDanh: course.biDanh }"
+      >Detail</a
+    >
+  </div>
+</div>

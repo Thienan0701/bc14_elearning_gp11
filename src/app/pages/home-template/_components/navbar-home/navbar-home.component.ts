@@ -1,3 +1,4 @@
+import { DataService } from './../../../../_core/services/data.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarHomeComponent implements OnInit {
 
-  constructor() { }
+  listDanhMuc : any = [];
+
+  constructor(private dataservice: DataService) { }
+
+
 
   ngOnInit(): void {
+    this.getDanhMuc();
+  }
+  getDanhMuc(){
+    this.dataservice.get("QuanLyKhoaHoc/LayDanhMucKhoaHoc").subscribe((result: any )=>{
+        this.listDanhMuc = result;
+    })
   }
 
 }
