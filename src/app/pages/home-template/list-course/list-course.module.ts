@@ -4,12 +4,14 @@ import { CommonModule } from '@angular/common';
 import { ListCourseRoutingModule } from './list-course-routing.module';
 import { ListCourseComponent } from './list-course.component';
 import { CourseComponent } from './course/course.component';
+import { ModalComponent } from './modal/modal.component';
 
 
 @NgModule({
   declarations: [
     ListCourseComponent,
-    CourseComponent
+    CourseComponent,
+    ModalComponent
   ],
   imports: [
     CommonModule,

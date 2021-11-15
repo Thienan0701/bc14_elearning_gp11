@@ -6,10 +6,33 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  info: string="Cybersoft"
+  people: any = {
+    name: "An",
+    age: 24
+  }
 
-  constructor() { }
+  arr : any = ['a','b','c','d','e','f', 'g','h'];
+
+  num: number = 0.259;
+  inputVal: string = "";
+  constructor() {
+    console.log("constructor");
+   }
+
+  ngOnChanges(){
+    console.log("ngOnChanges");
+  }
 
   ngOnInit(): void {
+    console.log("ngOnInit");
+  }
+
+  ngAfterViewInit(){
+    console.log("ngAfterViewInit");
+  }
+  ngOnDestroy(){
+    console.log("ngOnDestroy");
   }
 
 }
