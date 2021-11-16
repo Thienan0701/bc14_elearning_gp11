@@ -1,0 +1,26 @@
+<div class="flip-card">
+  <div class="flip-card-inner">
+    <div class="flip-card-front">
+      <img
+        [src]="course.hinhAnh"
+        alt="Card image cap"
+        style="width: 200px; height: 200px"
+      />
+    </div>
+    <div class="flip-card-back">
+      <ng-container style="position: absolute; top: 0; left: 0">
+        <h5 class="card-text text-truncate">{{ course.tenKhoaHoc }}</h5>
+
+        <a
+          class="btn btn-success"
+          routerLink="/detail/{{ course.maKhoaHoc }}"
+          [queryParams]="{
+            tenKhoaHoc: course.tenKhoaHoc,
+            biDanh: course.biDanh
+          }"
+          >Detail</a
+        >
+      </ng-container>
+    </div>
+  </div>
+</div>
