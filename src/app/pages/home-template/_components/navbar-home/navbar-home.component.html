@@ -35,32 +35,32 @@
           >List course</a
         >
       </li>
-      <li class="nav-item">
+      <li class="nav-item dropdown show">
         <a
-          class="nav-link"
-          type="button"
-          data-toggle="collapse"
-          data-target="#collapseExample"
+          class="nav-link dropdown-toggle"
+          href="#"
+          role="button"
+          id="dropdownMenuLink"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
         >
-          <span class="navbar-toggler-icon" routerLinkActive="active"></span
-          >Menu
+          <span class="navbar-toggler-icon"></span>Menu
         </a>
-        <div class="collapse" id="collapseExample">
-          <span class="row">
-            <ng-container *ngIf="listDanhMuc">
-              <div
-                class="col-sm-6"
-                *ngFor="let item of listDanhMuc; let index = index"
-              >
-                <a
-                  class="nav-link"
-                  href="/list-course-menu/{{ item.maDanhMuc }}"
-                  routerLinkActive="active"
-                  >{{ item.tenDanhMuc }}</a
-                >
-              </div>
-            </ng-container>
-          </span>
+
+        <div
+          class="dropdown-menu"
+          aria-labelledby="dropdownMenuLink"
+          *ngIf="listDanhMuc"
+        >
+          <ng-container *ngFor="let item of listDanhMuc; let index = index">
+            <a
+              class="dropdown-item"
+              href="/list-course-menu/{{ item.maDanhMuc }}"
+              routerLinkActive="active"
+              >{{ item.tenDanhMuc }}</a
+            >
+          </ng-container>
         </div>
       </li>
       <li class="nav-item">

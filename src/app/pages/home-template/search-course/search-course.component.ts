@@ -20,6 +20,10 @@ export class SearchCourseComponent implements OnInit {
     this.getParamsFromUrl();
     this.getListSearch();
   }
+  ngAfterViewInit(){
+    this.getParamsFromUrl();
+    this.getListSearch();
+  }
   getParamsFromUrl(){
     //Lay 1 param tu url
    this.name= this.activatedRoute.snapshot.paramMap.get("name");
