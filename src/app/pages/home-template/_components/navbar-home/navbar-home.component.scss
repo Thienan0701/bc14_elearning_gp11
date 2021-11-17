@@ -24,7 +24,7 @@
 
 .searchbar:hover > .search_input {
   padding: 0 10px;
-  width: 200px;
+  width: 150px;
   caret-color: red;
   transition: width 0.4s linear;
 }
@@ -35,8 +35,8 @@
 }
 
 .search_icon {
-  height: 35px;
-  width: 35px;
+  height: 36px;
+  width: 36px;
   float: right;
   display: flex;
   justify-content: center;

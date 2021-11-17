@@ -9,6 +9,7 @@ import {MaterialModule} from '../../_core/shares/material-module';
 import { FooterHomeComponent } from './_components/footer-home/footer-home.component'
 
 
+
 @NgModule({
   declarations: [
     HomeTemplateComponent,
@@ -18,7 +19,7 @@ import { FooterHomeComponent } from './_components/footer-home/footer-home.compo
   imports: [
     CommonModule,
     HomeTemplateRoutingModule,
-    MaterialModule
+    MaterialModule,
   ]
 })
 export class HomeTemplateModule { }

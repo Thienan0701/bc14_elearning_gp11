@@ -35,7 +35,7 @@
           >List course</a
         >
       </li>
-      <li class="nav-item dropdown show">
+      <li class="nav-item dropdown">
         <a
           class="nav-link dropdown-toggle"
           href="#"
@@ -49,13 +49,13 @@
         </a>
 
         <div
-          class="dropdown-menu"
+          class="dropdown-menu bg-primary"
           aria-labelledby="dropdownMenuLink"
           *ngIf="listDanhMuc"
         >
           <ng-container *ngFor="let item of listDanhMuc; let index = index">
             <a
-              class="dropdown-item"
+              class="dropdown-item text-black"
               href="/list-course-menu/{{ item.maDanhMuc }}"
               routerLinkActive="active"
               >{{ item.tenDanhMuc }}</a
@@ -81,6 +81,13 @@
             <i class="fas fa-search"></i>
           </a>
         </div>
+      </li>
+    </ul>
+    <ul class="navbar-nav justify-content-end">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/login" routerLinkActive="active"
+          >Login</a
+        >
       </li>
       <li class="nav-item">
         <a class="nav-link" routerLink="/register" routerLinkActive="active"

@@ -1,7 +1,6 @@
 import { HomeTemplateComponent } from './home-template.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
   //Home template
@@ -43,6 +42,16 @@ const routes: Routes = [
       {
         path: "search-course/:name",
         loadChildren: ()=>import("./search-course/search-course.module").then((m)=>m.SearchCourseModule)
+      },
+      //User Info
+      {
+        path: "user-info",
+        loadChildren: ()=>import("./user-info/user-info.module").then((m)=>m.UserInfoModule)
+      },
+      //Login
+      {
+        path: "login",
+        loadChildren: ()=>import("./login/login.module").then((m)=>m.LoginModule)
       }
     ]
   },

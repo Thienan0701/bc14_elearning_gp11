@@ -1,7 +1,12 @@
 <div class="card">
-  <img class="card-img-top" [src]="course.hinhAnh" alt="Card image cap" />
+  <img
+    class="card-img-top"
+    [src]="course.hinhAnh"
+    alt="Card image cap"
+    style="width: 250px; height: 150px"
+  />
   <div class="card-body">
-    <h5 class="card-title">{{ course.tenKhoaHoc }}</h5>
+    <h5 class="card-title text-truncate">{{ course.tenKhoaHoc }}</h5>
     <p class="card-text text-truncate">
       {{ course.moTa }}
     </p>
@@ -12,7 +17,7 @@
 
     <!-- Truyen nhieu params -->
     <a
-      class="btn btn-success"
+      class="btn btn-primary"
       routerLink="/detail/{{ course.maKhoaHoc }}"
       [queryParams]="{ tenKhoaHoc: course.tenKhoaHoc, biDanh: course.biDanh }"
       >Detail</a
