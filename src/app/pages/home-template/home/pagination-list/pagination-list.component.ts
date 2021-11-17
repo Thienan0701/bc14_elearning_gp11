@@ -12,6 +12,7 @@ export class PaginationListComponent implements OnInit {
   constructor(private dataservice: DataService) { }
 
   page : number = 0;
+
   ngOnInit(): void {
     this.getPaginationList();
 
@@ -23,19 +24,17 @@ export class PaginationListComponent implements OnInit {
     this.dataservice.get(`QuanLyKhoaHoc/LayDanhSachKhoaHoc_PhanTrang?page=1&pageSize=8&MaNhom=GP01`)
     .subscribe((result:any)=>{
       this.pagList= result;
-      console.log(this.pagList);
-      for (let i = 1; i <= this.pagList.totalPages; i++) {
+      for (let i = 1; i <= result.totalPages; i++) {
         this.pageNumbers.push(i);
-        console.log(this.pageNumbers)
      }
     })
   }
   getListFromNumber(num: number){
     this.page = num;
+
     this.dataservice.get(`QuanLyKhoaHoc/LayDanhSachKhoaHoc_PhanTrang?page=${this.page}&pageSize=8&MaNhom=GP01`)
     .subscribe((result:any)=>{
       this.pagList= result;
-      console.log(this.pagList);
     })
   }
 

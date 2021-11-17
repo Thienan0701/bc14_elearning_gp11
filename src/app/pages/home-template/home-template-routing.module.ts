@@ -38,6 +38,11 @@ const routes: Routes = [
       {
         path: "list-course-menu/:id",
         loadChildren: ()=>import("./courses-from-menu/courses-from-menu.module").then((m)=>m.CoursesFromMenuModule)
+      },
+      //Search course
+      {
+        path: "search-course/:name",
+        loadChildren: ()=>import("./search-course/search-course.module").then((m)=>m.SearchCourseModule)
       }
     ]
   },
