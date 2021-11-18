@@ -55,7 +55,7 @@
         >
           <ng-container *ngFor="let item of listDanhMuc; let index = index">
             <a
-              class="dropdown-item text-black"
+              class="dropdown-item font-weight-bold"
               href="/list-course-menu/{{ item.maDanhMuc }}"
               routerLinkActive="active"
               >{{ item.tenDanhMuc }}</a
@@ -83,16 +83,23 @@
         </div>
       </li>
     </ul>
-    <ul class="navbar-nav justify-content-end">
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/login" routerLinkActive="active"
-          >Login</a
-        >
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/register" routerLinkActive="active"
-          >Register</a
-        >
+    <ul class="navbar-nav d-flex justify-content-end">
+      <div *ngIf="account; then thenBlock; else elseBlock"></div>
+      <ng-template #thenBlock>
+        <li class="nav-item ml-3">
+          <a class="btn btn-info text-light" routerLink="/user-info"
+            >User Info</a
+          >
+        </li>
+      </ng-template>
+      <ng-template #elseBlock>
+        <li class="nav-item ml-3">
+          <a class="btn btn-info text-light" routerLink="/login">Login</a>
+        </li>
+      </ng-template>
+
+      <li class="nav-item ml-3">
+        <a class="btn btn-danger text-light" routerLink="/register">Register</a>
       </li>
     </ul>
   </div>

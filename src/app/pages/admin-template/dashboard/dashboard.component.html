@@ -18,9 +18,8 @@
             class="alert alert-danger"
             *ngIf="TaiKhoan.errors && (TaiKhoan.dirty || TaiKhoan.touched)"
           >
-            <!-- Kiem tra rong -->
             <div *ngIf="TaiKhoan.errors.required">Tai khoan ko dc rong</div>
-            <!-- kiem tra do dai ki tu -->
+
             <div *ngIf="TaiKhoan.errors.minlength || TaiKhoan.errors.maxlength">
               Do dai phai tu 7 den 15
             </div>
@@ -42,9 +41,8 @@
             class="alert alert-danger"
             *ngIf="MatKhau.errors && (MatKhau.dirty || MatKhau.touched)"
           >
-            <!-- Kiem tra rong -->
             <div *ngIf="MatKhau.errors.required">Mat khau ko dc rong</div>
-            <!-- kiem tra do dai ki tu -->
+
             <div *ngIf="MatKhau.errors.minlength || MatKhau.errors.maxlength">
               Do dai phai tu 5 den 10
             </div>

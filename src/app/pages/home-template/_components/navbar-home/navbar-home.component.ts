@@ -10,12 +10,13 @@ import {Router} from '@angular/router';
 export class NavbarHomeComponent implements OnInit {
 
   listDanhMuc : any = [];
-
+  account: any ;
   constructor(private dataservice: DataService, private router:Router) { }
 
 
 
   ngOnInit(): void {
+    this.account= localStorage.getItem("UserAdmin");
     this.getDanhMuc();
   }
   getDanhMuc(){

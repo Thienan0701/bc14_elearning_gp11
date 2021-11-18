@@ -1,5 +1,6 @@
 import { Component, Output, EventEmitter , OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import {Router} from "@angular/router"
+import { DataService } from '@services/data.service';
 
 @Component({
   selector: 'app-login',
@@ -7,25 +8,26 @@ import { FormGroup, FormControl } from '@angular/forms';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  error: string = '';
-  form: FormGroup = new FormGroup({
-    username: new FormControl(''),
-    password: new FormControl(''),
-  });
-
-  submit() {
-    if (this.form.valid) {
-      this.submitEM.emit(this.form.value);
-      console.log(this.form.value);
-    }
-  }
 
 
-  @Output() submitEM = new EventEmitter();
-
-  constructor() { }
+  constructor(private dataservice:DataService, private router :Router) { }
 
   ngOnInit(): void {
+  }
+  loginHome(user: any){
+    this.dataservice.post("QuanLyNguoiDung/DangNhap",user).subscribe((result)=>{
+      if(result.maLoaiNguoiDung === "HV"){
+        //Luu xuong local storage
+        localStorage.setItem('UserAdmin', JSON.stringify(result));
+
+        //chuyen huong den Home
+        this.router.navigate(['/']);
+      }else{
+        localStorage.setItem('UserAdmin', JSON.stringify(result));
+        //chuyen huong den Dashboard
+        this.router.navigate(['/admin/dashboard']);
+      }
+    })
   }
 
 }
