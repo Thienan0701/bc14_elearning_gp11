@@ -1,5 +1,6 @@
 <div class="container mt-4 mb-5">
   <mat-tab-group>
+    <!-- Thong tin tai khoan -->
     <mat-tab label="My Info">
       <div class="container mt-2">
         <div class="row mt-3">
@@ -29,26 +30,44 @@
         </div>
         <div class="row mt-3">
           <div class="col-sm-12 d-flex justify-content-center">
-            <button class="btn btn-info">Edit</button>
+            <button
+              type="button"
+              class="btn btn-primary btn-lg"
+              data-toggle="modal"
+              data-target="#modelId"
+            >
+              Edit
+            </button>
           </div>
         </div>
       </div>
     </mat-tab>
+
+    <!-- Thong tin khoa hoc da dang ky -->
     <mat-tab label="My Courses">
       <div class="container mt-2">
         <h3 class="bg-primary text-light mt-3">My subcribed courses</h3>
-        <ng-container *ngFor="let course of listGhiDanh; let index = index">
-          <div class="card mb-3 max-width-540">
-            <div class="col-md-12 d-flex justify-content-center">
-              <h5>{{ course.tenKhoaHoc }}</h5>
+        <div class="row mt-2 mb-2">
+          <ng-container *ngFor="let course of listGhiDanh; let index = index">
+            <div class="col-md-6">
+              <div class="card mb-3 max-width-400">
+                <div class="col-md-12 d-flex justify-content-center">
+                  <h4>{{ course.tenKhoaHoc }}</h4>
+                </div>
+                <div class="col-md-12 d-flex justify-content-center mb-2">
+                  <button class="btn btn-danger">Delete</button>
+                </div>
+              </div>
             </div>
-            <div class="col-md-12 d-flex justify-content-center">
-              <button class="btn btn-danger">Delete</button>
-            </div>
-            <hr />
-          </div>
-        </ng-container>
+          </ng-container>
+        </div>
       </div>
     </mat-tab>
   </mat-tab-group>
 </div>
+<app-modal-info
+  [fullname]="fullname"
+  [username]="username"
+  [email]="email"
+  [phonenumber]="phonenumber"
+></app-modal-info>

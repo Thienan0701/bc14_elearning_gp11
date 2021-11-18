@@ -28,7 +28,6 @@ export class UserInfoComponent implements OnInit {
     this.phonenumber=JSON.parse(account).soDT;
     this.accessToken=JSON.parse(account).accessToken;
     this.dataservice.post("QuanLyNguoiDung/ThongTinNguoiDung",this.accessToken).subscribe((result:any)=>{
-      console.log(result);
       this.listGhiDanh= result.chiTietKhoaHocGhiDanh;
     })
   }

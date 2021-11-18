@@ -36,6 +36,16 @@ export class DataService {
     )
   }
 
+  put(uri: any, data: any) : Observable<any>{
+    const url = `${urlApi}/${uri}`
+    return this.http.post(url, data).pipe(
+      tap(()=>{}),
+      catchError((error: any)=>{
+        return this.handleErrors(error);
+      })
+    )
+  }
+
   handleErrors(error: any) {
     switch (error.status) {
       case 300:

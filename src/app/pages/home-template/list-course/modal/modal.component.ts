@@ -1,6 +1,6 @@
 import { ShareDataService } from './../../../../_core/services/share-data.service';
 
-import { Component, OnInit,Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-modal',
