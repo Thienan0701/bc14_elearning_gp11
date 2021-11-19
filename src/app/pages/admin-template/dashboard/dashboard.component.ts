@@ -35,18 +35,11 @@ export class DashboardComponent implements OnInit {
   public chartClicked(e: any): void { }
   public chartHovered(e: any): void { }
 
-  constructor(private dataService:DataService) { }
+  constructor() { }
 
   ngOnInit(): void {
   }
 
-  addUser(user:any){
-    user.maLoaiNguoiDung = "HV";
-    user.maNhom="GP01"
-    this.dataService.post("QuanLyNguoiDung/ThemNguoiDung",user).subscribe((result)=>{
-      console.log(result);
-    })
-    //console.log(user)
-  }
+
 
 }

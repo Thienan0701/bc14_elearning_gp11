@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from "@angular/router"
 import { DataService } from 'src/app/_core/services/data.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-detail-course',
   templateUrl: './detail-course.component.html',
@@ -9,7 +10,7 @@ import { DataService } from 'src/app/_core/services/data.service';
 export class DetailCourseComponent implements OnInit {
   detail: any = [];
   id: any;
-  constructor(private activatedRoute : ActivatedRoute, private data:DataService) { }
+  constructor(private activatedRoute : ActivatedRoute, private data:DataService, private router :Router) { }
 
   ngOnInit(): void {
     this.getParamsFromUrl();
@@ -30,6 +31,15 @@ export class DetailCourseComponent implements OnInit {
       this.detail=result;
     });
 
+  }
+  subcribeCourse(object: any){
+    const account: any= localStorage.getItem('UserAdmin');
+    const sub : any = {
+      maKhoaHoc : object.maKhoaHoc,
+      taiKhoan : JSON.parse(account).taiKhoan
+    }
+    this.data.post("QuanLyKhoaHoc/GhiDanhKhoaHoc",sub).subscribe();
+    this.router.navigate(['/user-info']);
   }
 
 }

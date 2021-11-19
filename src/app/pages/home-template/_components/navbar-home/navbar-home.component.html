@@ -92,16 +92,20 @@
             >User Info</a
           >
         </li>
+        <li class="nav-item ml-3">
+          <a class="btn btn-danger text-light" (click)="Logout()">Logout</a>
+        </li>
       </ng-template>
       <ng-template #elseBlock>
         <li class="nav-item ml-3">
           <a class="btn btn-info text-light" routerLink="/login">Login</a>
         </li>
+        <li class="nav-item ml-3">
+          <a class="btn btn-danger text-light" routerLink="/register"
+            >Register</a
+          >
+        </li>
       </ng-template>
-
-      <li class="nav-item ml-3">
-        <a class="btn btn-danger text-light" routerLink="/register">Register</a>
-      </li>
     </ul>
   </div>
 </nav>

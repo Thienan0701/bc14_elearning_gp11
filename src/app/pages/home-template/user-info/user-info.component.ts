@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '@services/data.service';
-import {Subscription} from "rxjs"
+import {Subscription} from "rxjs";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-info',
@@ -19,7 +20,7 @@ export class UserInfoComponent implements OnInit {
   subInfo = new Subscription();
 
 
-  constructor(private dataservice:DataService) { }
+  constructor(private dataservice:DataService, private router : Router) { }
 
   ngOnInit(): void {
     this.getUserInfo();
@@ -38,6 +39,18 @@ export class UserInfoComponent implements OnInit {
       this.listGhiDanh= result.chiTietKhoaHocGhiDanh;
       this.password= result.matKhau;
     })
+  }
+
+  unsubscribe(course: any){
+    const account: any= localStorage.getItem('UserAdmin');
+    const sub : any = {
+      maKhoaHoc : course.maKhoaHoc,
+      taiKhoan : JSON.parse(account).taiKhoan
+    }
+    this.dataservice.post(`QuanLyKhoaHoc/HuyGhiDanh`, sub).subscribe();
+
+    this.ngOnInit();
+
   }
   ngOnDestroy(){
     this.subInfo.unsubscribe();

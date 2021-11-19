@@ -10,7 +10,7 @@ import {Subscription} from "rxjs"
 export class CoursesListComponent implements OnInit {
 
   @Input() id : any;
-  listcourses: any = []
+  listcourses: any = [];
   subListCourse = new Subscription();
   constructor(private dataservice: DataService) { }
 
@@ -20,6 +20,7 @@ export class CoursesListComponent implements OnInit {
   getListFromId(){
     this.subListCourse=this.dataservice.get(`QuanLyKhoaHoc/LayKhoaHocTheoDanhMuc?maDanhMuc=${this.id}&MaNhom=GP01`).subscribe((result:any)=>{
       this.listcourses = result;
+      this.ngOnInit();
     })
   }
 

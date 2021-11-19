@@ -18,6 +18,14 @@ const routes: Routes = [
           path: "dashboard",
           loadChildren: ()=>import("./dashboard/dashboard.module").then((m)=>m.DashboardModule),
         },
+        {
+          path: "user-manage",
+          loadChildren: ()=> import("./user-manage/user-manage.module").then((m)=>m.UserManageModule),
+        },
+        {
+          path: "course-manage",
+          loadChildren: ()=> import("./course-manage/course-manage.module").then((m)=>m.CourseManageModule),
+        },
       ],
       canActivate:[AuthGuard]
     }

@@ -9,7 +9,7 @@
   <!-- Logo -->
   <li>
     <div class="logo-wrapper waves-light">
-      <a href="#"
+      <a routerLink="/admin"
         ><img
           src="https://cybersoft.edu.vn/wp-content/uploads/2021/03/logo-cyber-nav.svg"
           class="img-fluid flex-center"
@@ -23,7 +23,7 @@
     <ul class="collapsible collapsible-accordion">
       <mdb-accordion [multiple]="false" aria-multiselectable="false">
         <!-- Simple link -->
-        <mdb-accordion-item class="no-collase">
+        <mdb-accordion-item class="no-collase" routerLink="/admin/user-manage">
           <mdb-accordion-item-head mdbWavesEffect
             ><mdb-icon fas icon="user-alt"></mdb-icon> User management
           </mdb-accordion-item-head>
@@ -31,7 +31,10 @@
         </mdb-accordion-item>
 
         <!-- Simple link -->
-        <mdb-accordion-item class="no-collase">
+        <mdb-accordion-item
+          class="no-collase"
+          routerLink="/admin/course-manage"
+        >
           <mdb-accordion-item-head mdbWavesEffect
             ><mdb-icon fas icon="book-open"></mdb-icon> Course management
             2</mdb-accordion-item-head

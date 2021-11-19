@@ -1,1 +1,158 @@
-<p>user-manage works!</p>
+<div class="container mt-5">
+  <mat-tab-group>
+    <mat-tab label="User List">
+      <div class="container mt-2 mb-3">
+        <div class="table-responsive">
+          <table class="table table-striped table-bordered">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Username</th>
+                <th scope="col">Fullname</th>
+                <th scope="col">Phone number</th>
+                <th scope="col">Email</th>
+                <th scope="col">Type</th>
+                <th scope="col">TODO</th>
+              </tr>
+            </thead>
+            <tbody *ngIf="listUserPaging">
+              <ng-container
+                *ngFor="let user of listUserPaging; let index = index"
+              >
+                <tr>
+                  <th scope="row">{{ index + 1 }}</th>
+                  <td>{{ user.taiKhoan }}</td>
+                  <td>{{ user.hoTen }}</td>
+                  <td>{{ user.soDT }}</td>
+                  <td>{{ user.email }}</td>
+                  <td>{{ user.maLoaiNguoiDung }}</td>
+                  <td>Cell</td>
+                </tr>
+              </ng-container>
+            </tbody>
+          </table>
+        </div>
+        <!-- Phan trang list course -->
+        <nav aria-label="Page navigation example" class="mt-1">
+          <ul class="pagination justify-content-center">
+            <li class="page-item text-primary" routerLinkActive="active">
+              <a class="page-link text-info">Previous</a>
+            </li>
+            <ng-container>
+              <li class="page-item text-primary" routerLinkActive="active">
+                <a class="page-link text-info">1</a>
+              </li>
+            </ng-container>
+            <li class="page-item text-primary" routerLinkActive="active">
+              <a class="page-link text-info">Next</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </mat-tab>
+    <mat-tab label="Add User ">
+      <div class="container mt-2 d-flex justify-content-center mb-4">
+        <form
+          class="form-outline"
+          style="width: 500px"
+          #addUserForm="ngForm"
+          (ngSubmit)="addUser(addUserForm.value)"
+        >
+          <div class="form-group">
+            <label class="text-primary font-weight-bold">Tai khoan:</label>
+            <input
+              type="text"
+              class="form-control"
+              name="taiKhoan"
+              ngModel
+              required
+              #TaiKhoan="ngModel"
+              minlength="7"
+              maxlength="15"
+            />
+            <div
+              class="alert alert-danger"
+              *ngIf="TaiKhoan.errors && (TaiKhoan.dirty || TaiKhoan.touched)"
+            >
+              <div *ngIf="TaiKhoan.errors.required">Tai khoan ko dc rong</div>
+
+              <div
+                *ngIf="TaiKhoan.errors.minlength || TaiKhoan.errors.maxlength"
+              >
+                Do dai phai tu 7 den 15
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="text-primary font-weight-bold">Mat khau:</label>
+            <input
+              type="text"
+              class="form-control"
+              name="matKhau"
+              ngModel
+              #MatKhau="ngModel"
+              required
+              minlength="5"
+              maxlength="10"
+            />
+            <div
+              class="alert alert-danger"
+              *ngIf="MatKhau.errors && (MatKhau.dirty || MatKhau.touched)"
+            >
+              <div *ngIf="MatKhau.errors.required">Mat khau ko dc rong</div>
+
+              <div *ngIf="MatKhau.errors.minlength || MatKhau.errors.maxlength">
+                Do dai phai tu 5 den 10
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="text-primary font-weight-bold">Email:</label>
+            <input
+              type="text"
+              class="form-control"
+              name="email"
+              ngModel
+              #Email="ngModel"
+              required
+              pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+            />
+            <div
+              class="alert alert-danger"
+              *ngIf="Email.errors && (Email.dirty || Email.touched)"
+            >
+              <div *ngIf="Email.errors.required">Email ko dc rong</div>
+              <div *ngIf="Email.errors.pattern">Email phai dung dinh dang</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="text-primary font-weight-bold">Ho ten:</label>
+            <input
+              type="text"
+              class="form-control"
+              name="hoTen"
+              ngModel
+              #HoTen="ngModel"
+            />
+          </div>
+          <div class="form-group">
+            <label class="text-primary font-weight-bold">So Dt:</label>
+            <input
+              type="text"
+              class="form-control"
+              name="soDT"
+              ngModel
+              #SoDT="ngModel"
+            />
+          </div>
+          <button
+            [disabled]="!addUserForm.valid"
+            class="btn btn-primary d-flex justify-content-center"
+          >
+            Add User
+          </button>
+        </form>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</div>

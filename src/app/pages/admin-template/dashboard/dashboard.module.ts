@@ -1,4 +1,3 @@
-import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ChartsModule, WavesModule } from 'ng-uikit-pro-standard';
@@ -13,7 +12,6 @@ import { DashboardComponent } from './dashboard.component';
   imports: [
     CommonModule,
     DashboardRoutingModule,
-    FormsModule,
     ChartsModule,
     WavesModule
   ]

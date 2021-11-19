@@ -37,4 +37,9 @@ export class NavbarHomeComponent implements OnInit {
     })
   }
 
+  Logout(){
+    localStorage.removeItem("UserAdmin");
+    this.ngOnInit();
+  }
+
 }

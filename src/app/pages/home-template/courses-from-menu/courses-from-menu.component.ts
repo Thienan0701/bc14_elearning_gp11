@@ -15,6 +15,7 @@ export class CoursesFromMenuComponent implements OnInit {
   ngOnInit(): void {
     this.getParamsFromUrl();
   }
+
   getParamsFromUrl(){
     //Lay 1 param tu url
    this.id= this.activatedRoute.snapshot.paramMap.get("id");
