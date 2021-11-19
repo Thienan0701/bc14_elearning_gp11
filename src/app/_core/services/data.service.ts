@@ -38,7 +38,21 @@ export class DataService {
 
   put(uri: any, data: any) : Observable<any>{
     const url = `${urlApi}/${uri}`
-    return this.http.post(url, data).pipe(
+    return this.http.put(url, data).pipe(
+      tap(()=>{}),
+      catchError((error: any)=>{
+        return this.handleErrors(error);
+      })
+    )
+  }
+
+  delete(uri: any) : Observable<any>{
+    const url = `${urlApi}/${uri}`
+
+    let option : any = {
+      responseType: 'text'
+    };
+    return this.http.delete(url, option).pipe(
       tap(()=>{}),
       catchError((error: any)=>{
         return this.handleErrors(error);

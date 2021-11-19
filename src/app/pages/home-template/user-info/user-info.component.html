@@ -23,13 +23,19 @@
           </div>
           <div class="col-md-6">
             <h4 class="text-primary">
-              Phone number:
-              <span class="text-secondary">{{ phonenumber }}</span>
+              Password:
+              <span class="text-secondary">{{ password }}</span>
             </h4>
           </div>
         </div>
         <div class="row mt-3">
-          <div class="col-sm-12 d-flex justify-content-center">
+          <div class="col-md-6">
+            <h4 class="text-primary">
+              Phone number:
+              <span class="text-secondary">{{ phonenumber }}</span>
+            </h4>
+          </div>
+          <div class="col-md-6 d-flex justify-content-center">
             <button
               type="button"
               class="btn btn-primary btn-lg"
@@ -68,6 +74,7 @@
 <app-modal-info
   [fullname]="fullname"
   [username]="username"
+  [password]="password"
   [email]="email"
   [phonenumber]="phonenumber"
 ></app-modal-info>

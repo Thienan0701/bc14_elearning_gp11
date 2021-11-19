@@ -22,11 +22,19 @@ export class NavbarHomeComponent implements OnInit {
   getDanhMuc(){
     this.dataservice.get("QuanLyKhoaHoc/LayDanhMucKhoaHoc").subscribe((result: any )=>{
         this.listDanhMuc = result;
+
     })
   }
   clickme(value: any){
-    console.log(value);
-    this.router.navigate(['/search-course',value]);
+    this.router.navigate(['/search-course',value]).then(()=>{
+       window.location.reload();
+    });
+  }
+
+  navigateitem(item:any){
+    this.router.navigate([`/list-course-menu/${ item }`]).then(()=>{
+      window.location.reload();
+    })
   }
 
 }

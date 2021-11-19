@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '@services/data.service';
+import {Subscription} from "rxjs"
 
 @Component({
   selector: 'app-user-info',
@@ -8,28 +9,38 @@ import { DataService } from '@services/data.service';
 })
 export class UserInfoComponent implements OnInit {
   username: any;
+  password: any;
   fullname: any;
   email: any;
   phonenumber: any;
   accessToken: any;
   listGhiDanh : any = [];
+
+  subInfo = new Subscription();
+
+
   constructor(private dataservice:DataService) { }
 
   ngOnInit(): void {
     this.getUserInfo();
+
   }
 
   getUserInfo(){
     const account: any= localStorage.getItem('UserAdmin');
-    console.log(account);
-    this.fullname=JSON.parse(account).hoTen;
-    this.username=JSON.parse(account).taiKhoan;
-    this.email=JSON.parse(account).email;
-    this.phonenumber=JSON.parse(account).soDT;
+    // console.log(account);
     this.accessToken=JSON.parse(account).accessToken;
-    this.dataservice.post("QuanLyNguoiDung/ThongTinNguoiDung",this.accessToken).subscribe((result:any)=>{
+    this.subInfo=this.dataservice.post("QuanLyNguoiDung/ThongTinNguoiDung",this.accessToken).subscribe((result:any)=>{
+      this.fullname=result.hoTen;
+      this.username=result.taiKhoan;
+      this.email=result.email;
+      this.phonenumber=result.soDT;
       this.listGhiDanh= result.chiTietKhoaHocGhiDanh;
+      this.password= result.matKhau;
     })
+  }
+  ngOnDestroy(){
+    this.subInfo.unsubscribe();
   }
 
 }

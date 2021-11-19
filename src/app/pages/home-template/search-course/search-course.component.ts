@@ -20,21 +20,16 @@ export class SearchCourseComponent implements OnInit {
     this.getParamsFromUrl();
     this.getListSearch();
   }
-  ngAfterViewInit(){
-    this.getParamsFromUrl();
-    this.getListSearch();
-  }
   getParamsFromUrl(){
     //Lay 1 param tu url
    this.name= this.activatedRoute.snapshot.paramMap.get("name");
-   console.log(this.name);
   }
   getListSearch(){
     this.subListSearch=this.data.get(`QuanLyKhoaHoc/LayDanhSachKhoaHoc?tenKhoaHoc=${this.name}&MaNhom=GP01`)
     .subscribe((result: any)=>{
       this.listSearch=result;
       this.soKetQua  = result.length;
-      console.log(this.listSearch);
+
     });
   }
   ngOnDestroy(){

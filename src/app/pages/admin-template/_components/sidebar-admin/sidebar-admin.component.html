@@ -1,27 +1,47 @@
-<div id="mySidebar" class="sidebar">
-  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-  <a href="#">About</a>
-  <a href="#">Services</a>
-  <a href="#">Clients</a>
-  <a href="#">Contact</a>
-</div>
+<!-- SideNav slide-out button -->
+<a (click)="sidenav.toggle()" mdbBtn color="primary" class="p-3 button-collapse"
+  ><mdb-icon fas icon="bars"></mdb-icon
+></a>
+<!--/. SideNav slide-out button -->
 
-<div id="main">
-  <button class="openbtn" onclick="openNav()">&#9776; Open Sidebar</button>
-  <h2>Collapsed Sidebar</h2>
-  <p>Content...</p>
-</div>
+<!-- Sidebar navigation -->
+<mdb-side-nav #sidenav class="fixed" [fixed]="true">
+  <!-- Logo -->
+  <li>
+    <div class="logo-wrapper waves-light">
+      <a href="#"
+        ><img
+          src="https://cybersoft.edu.vn/wp-content/uploads/2021/03/logo-cyber-nav.svg"
+          class="img-fluid flex-center"
+      /></a>
+    </div>
+  </li>
+  <!--/. Logo -->
 
-<script>
-  /* Set the width of the sidebar to 250px and the left margin of the page content to 250px */
-  function openNav() {
-    document.getElementById("mySidebar").style.width = "250px";
-    document.getElementById("main").style.marginLeft = "250px";
-  }
+  <!-- Side navigation links -->
+  <li>
+    <ul class="collapsible collapsible-accordion">
+      <mdb-accordion [multiple]="false" aria-multiselectable="false">
+        <!-- Simple link -->
+        <mdb-accordion-item class="no-collase">
+          <mdb-accordion-item-head mdbWavesEffect
+            ><mdb-icon fas icon="user-alt"></mdb-icon> User management
+          </mdb-accordion-item-head>
+          <mdb-accordion-item-body></mdb-accordion-item-body>
+        </mdb-accordion-item>
 
-  /* Set the width of the sidebar to 0 and the left margin of the page content to 0 */
-  function closeNav() {
-    document.getElementById("mySidebar").style.width = "0";
-    document.getElementById("main").style.marginLeft = "0";
-  }
-</script>
+        <!-- Simple link -->
+        <mdb-accordion-item class="no-collase">
+          <mdb-accordion-item-head mdbWavesEffect
+            ><mdb-icon fas icon="book-open"></mdb-icon> Course management
+            2</mdb-accordion-item-head
+          >
+          <mdb-accordion-item-body></mdb-accordion-item-body>
+        </mdb-accordion-item>
+      </mdb-accordion>
+    </ul>
+  </li>
+  <!--/. Side navigation links -->
+  <div class="sidenav-bg mask-strong"></div>
+</mdb-side-nav>
+<!--/. Sidebar navigation -->

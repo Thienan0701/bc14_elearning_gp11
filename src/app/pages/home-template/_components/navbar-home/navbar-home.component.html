@@ -55,9 +55,10 @@
         >
           <ng-container *ngFor="let item of listDanhMuc; let index = index">
             <a
-              class="dropdown-item font-weight-bold"
-              href="/list-course-menu/{{ item.maDanhMuc }}"
+              class="dropdown-item"
+              routerLink="/list-course-menu/{{ item.maDanhMuc }}"
               routerLinkActive="active"
+              (click)="navigateitem(item.maDanhMuc)"
               >{{ item.tenDanhMuc }}</a
             >
           </ng-container>
@@ -66,7 +67,7 @@
       <li class="nav-item">
         <div class="searchbar">
           <input
-            class="search_input"
+            class="search_input pb-1"
             type="text"
             id="searchInput"
             name="searchInput"
