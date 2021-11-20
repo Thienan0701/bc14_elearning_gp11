@@ -2,6 +2,18 @@
   <mat-tab-group>
     <mat-tab label="User List">
       <div class="container mt-2 mb-3">
+        <!-- Search user -->
+        <div class="form-outline mt-2 mb-2">
+          <input
+            type="search"
+            id="form1"
+            class="form-control"
+            placeholder="search with Username or Fullname"
+            [(ngModel)]="keyword"
+          />
+          <p>{{ keyword }}</p>
+        </div>
+
         <div class="table-responsive">
           <table class="table table-striped table-bordered">
             <thead>
@@ -26,30 +38,69 @@
                   <td>{{ user.soDT }}</td>
                   <td>{{ user.email }}</td>
                   <td>{{ user.maLoaiNguoiDung }}</td>
-                  <td>Cell</td>
+                  <td>
+                    <div class="d-flex flex-row">
+                      <div class="col">
+                        <mdb-icon
+                          class="text-info"
+                          far
+                          icon="edit"
+                          title="Edit"
+                        ></mdb-icon>
+                        <!-- <span class="text-sm" [hidden]="!iconVisible"
+                          >Edit</span
+                        > -->
+                      </div>
+                      <div class="col">
+                        <mdb-icon
+                          class="text-danger"
+                          fas
+                          icon="calendar-times"
+                          title="Delete"
+                        ></mdb-icon>
+                      </div>
+                    </div>
+                  </td>
                 </tr>
               </ng-container>
             </tbody>
           </table>
         </div>
-        <!-- Phan trang list course -->
-        <nav aria-label="Page navigation example" class="mt-1">
+
+        <!-- Phan trang list user -->
+        <nav aria-label="Page navigation" class="mt-1">
           <ul class="pagination justify-content-center">
-            <li class="page-item text-primary" routerLinkActive="active">
-              <a class="page-link text-info">Previous</a>
-            </li>
-            <ng-container>
-              <li class="page-item text-primary" routerLinkActive="active">
-                <a class="page-link text-info">1</a>
+            <ng-container *ngIf="number > 1">
+              <li
+                class="page-item text-primary"
+                (click)="getListFromPage(number - 1)"
+              >
+                <a class="page-link text-info font-weight-bold">Previous</a>
               </li>
             </ng-container>
-            <li class="page-item text-primary" routerLinkActive="active">
-              <a class="page-link text-info">Next</a>
-            </li>
+
+            <ng-container *ngFor="let page of pagenums; let index = index">
+              <li
+                class="page-item text-primary"
+                (click)="getListFromPage(page)"
+              >
+                <a class="page-link text-info font-weight-bold">{{ page }}</a>
+              </li>
+            </ng-container>
+            <ng-container *ngIf="number <= maxpage">
+              <li
+                class="page-item text-primary"
+                *ngIf="number <= maxpage"
+                (click)="getListFromPage(number + 1)"
+              >
+                <a class="page-link text-info font-weight-bold">Next</a>
+              </li>
+            </ng-container>
           </ul>
         </nav>
       </div>
     </mat-tab>
+
     <mat-tab label="Add User ">
       <div class="container mt-2 d-flex justify-content-center mb-4">
         <form
