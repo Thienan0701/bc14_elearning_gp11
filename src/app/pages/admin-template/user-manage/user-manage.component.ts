@@ -11,23 +11,19 @@ import { Router } from '@angular/router';
 export class UserManageComponent implements OnInit {
 
   listUserPaging: any = [];
-  //keyword search
-  keyword : string = "";
-  listUserUpdate : any =[];
+
+
 
   //Phan trang
   pagenums:any = [];
-  number : number = 0;
+  number : number = 1;
   maxpage: number = 0;
+  soTrang: any;
 
   constructor(private dataService: DataService, private router:Router) { }
   ngOnInit(): void {
     this.getListUserPaging();
-    // //Search keyword
-    // this.listUserUpdate=this.listUserPaging.filter((item:any) => {
-    // item.taiKhoan.include(this.keyword);
-    // console.log(this.listUserUpdate);
-    //});
+
   }
 
   getListUserPaging(){
@@ -37,11 +33,10 @@ export class UserManageComponent implements OnInit {
       //Sap xep theo ten tai khoan
       this.listUserPaging= result.items.sort((a: any, b: any) => (a.taiKhoan > b.taiKhoan) ? 1 : -1);
       this.maxpage =  result.totalPages;
-      //Lay danh sach so trang
-      for (let i = 1; i < this.maxpage; i++) {
-        this.pagenums.push(i);
-     }
-      console.log(result);
+          //Lay danh sach so trang
+    for (let i = 1; i < this.maxpage; i++) {
+      this.pagenums.push(i);
+   }
     })
   }
 
@@ -53,7 +48,21 @@ export class UserManageComponent implements OnInit {
 
       //Sap xep theo ten tai khoan
       this.listUserPaging= result.items.sort((a: any, b: any) => (a.taiKhoan > b.taiKhoan) ? 1 : -1);
+
     })
+  }
+
+  //Search user
+  searchUser(keyword :any){
+    this.dataService.get(`QuanLyNguoiDung/TimKiemNguoiDung?MaNhom=GP01&tuKhoa=${keyword}`).subscribe((result:any)=>{
+      this.listUserPaging=result;
+    })
+    // this.listUserPaging = this.listUserPaging.filter((user:any) => {
+    //   return user.taiKhoan.toLowerCase().indexOf(keyword.toLowerCase()) !== -1
+    // });
+    // console.log(this.listUserPaging);
+
+
   }
 
   addUser(user:any){

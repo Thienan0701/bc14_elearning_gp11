@@ -6,12 +6,14 @@ import {MatTabsModule} from '@angular/material/tabs';
 
 import { UserManageRoutingModule } from './user-manage-routing.module';
 import { UserManageComponent } from './user-manage.component';
+import { ModalUserManageComponent } from './modal-user-manage/modal-user-manage.component';
 
 
 
 @NgModule({
   declarations: [
-    UserManageComponent
+    UserManageComponent,
+    ModalUserManageComponent
   ],
   imports: [
     CommonModule,

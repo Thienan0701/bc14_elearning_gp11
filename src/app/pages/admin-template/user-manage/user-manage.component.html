@@ -1,17 +1,26 @@
-<div class="container mt-5">
+<div class="container mb-2">
   <mat-tab-group>
     <mat-tab label="User List">
       <div class="container mt-2 mb-3">
         <!-- Search user -->
-        <div class="form-outline mt-2 mb-2">
-          <input
-            type="search"
-            id="form1"
-            class="form-control"
-            placeholder="search with Username or Fullname"
-            [(ngModel)]="keyword"
-          />
-          <p>{{ keyword }}</p>
+        <div class="container d-flex justify-content-end">
+          <div class="input-group rounded mt-3 mb-3" style="width: 600px">
+            <input
+              type="search"
+              id="searchInput"
+              class="form-control"
+              style="width: 500px"
+              placeholder="search with Username"
+              #searchInput
+            />
+            <button
+              type="button"
+              class="btn btn-primary"
+              (click)="searchUser(searchInput.value)"
+            >
+              <mdb-icon fas icon="search"></mdb-icon>
+            </button>
+          </div>
         </div>
 
         <div class="table-responsive">
@@ -41,23 +50,42 @@
                   <td>
                     <div class="d-flex flex-row">
                       <div class="col">
-                        <mdb-icon
-                          class="text-info"
-                          far
-                          icon="edit"
-                          title="Edit"
-                        ></mdb-icon>
-                        <!-- <span class="text-sm" [hidden]="!iconVisible"
-                          >Edit</span
-                        > -->
+                        <!-- Subcribe for user -->
+                        <a
+                          title="Subscribe"
+                          data-toggle="modal"
+                          data-target="#modalUserManage"
+                        >
+                          <mdb-icon
+                            class="text-primary"
+                            far
+                            icon="address-book"
+                          ></mdb-icon>
+                        </a>
                       </div>
+                      <!-- Edit User -->
                       <div class="col">
-                        <mdb-icon
-                          class="text-danger"
-                          fas
-                          icon="calendar-times"
-                          title="Delete"
-                        ></mdb-icon>
+                        <a
+                          title="Edit"
+                          data-toggle="modal"
+                          data-target="#modalUserManage"
+                        >
+                          <mdb-icon
+                            class="text-warning"
+                            far
+                            icon="edit"
+                          ></mdb-icon
+                        ></a>
+                      </div>
+                      <!-- Delete User -->
+                      <div class="col">
+                        <a title="Delete">
+                          <mdb-icon
+                            class="text-danger"
+                            fas
+                            icon="calendar-times"
+                          ></mdb-icon
+                        ></a>
                       </div>
                     </div>
                   </td>
@@ -207,3 +235,4 @@
     </mat-tab>
   </mat-tab-group>
 </div>
+<app-modal-user-manage></app-modal-user-manage>
