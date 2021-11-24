@@ -26,11 +26,6 @@ export class ModalUserManageComponent implements OnInit {
 
   }
 
-  ngOnChanges(changes: SimpleChanges) {
-    /**********THIS FUNCTION WILL TRIGGER WHEN PARENT COMPONENT UPDATES 'someInput'**************/
-    //Write your code here
-
-    }
   //Truyen gia tri tu dropdown menu den form
   setInputvalue(value: any) {
     this.coursename = value.tenKhoaHoc;

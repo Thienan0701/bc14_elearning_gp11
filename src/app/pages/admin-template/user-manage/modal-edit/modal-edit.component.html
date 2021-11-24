@@ -28,6 +28,7 @@
               type="text"
               name="taiKhoan"
               class="form-control"
+              [disabled]="true"
               [(ngModel)]="userEdit.taiKhoan"
               placeholder="Username"
               ngModel
@@ -104,8 +105,10 @@
                   mdbWavesEffect
                 ></button>
                 <div class="dropdown-menu dropdown-primary">
-                  <ng-container>
-                    <a class="dropdown-item">Item 1</a>
+                  <ng-container *ngFor="let type of listType">
+                    <a class="dropdown-item" (click)="setInputValue(type)">{{
+                      type.maLoaiNguoiDung
+                    }}</a>
                   </ng-container>
                 </div>
               </div>

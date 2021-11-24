@@ -27,13 +27,14 @@ export class UserManageComponent implements OnInit {
 
   //Thong tin ng dung cho modal Edit
   userEdit: any;
+  listType: any =[];
 
 
   subManage = new Subscription();
   constructor(private dataService: DataService, private router:Router) { }
   ngOnInit(): void {
     this.getListUserPaging();
-
+    this.getListType();
   }
 
   getListUserPaging(){
@@ -130,6 +131,13 @@ export class UserManageComponent implements OnInit {
       }
       this.dataService.post(`QuanLyNguoiDung/ThongTinTaiKhoan`,user).subscribe((result:any)=>{
         this.userEdit=result;
+      })
+    }
+
+    //lay danh sach loai nguoi dung truyen vao modal edit
+    getListType(){
+      this.dataService.get("QuanLyNguoiDung/LayDanhSachLoaiNguoiDung").subscribe((result:any)=>{
+          this.listType = result;
       })
     }
     ngOnDestroy(){

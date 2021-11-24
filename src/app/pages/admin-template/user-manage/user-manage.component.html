@@ -239,7 +239,10 @@
 
   <ng-container *ngIf="userEdit">
     <!-- Modal Edit User -->
-    <app-modal-edit [userEdit]="userEdit"></app-modal-edit>
+    <app-modal-edit
+      [userEdit]="userEdit"
+      [listType]="listType"
+    ></app-modal-edit>
   </ng-container>
 
   <!-- Modal Comfirm subscribes -->

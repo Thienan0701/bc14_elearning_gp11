@@ -10,9 +10,9 @@ import { ValueTransformer } from '@angular/compiler/src/util';
 })
 export class ModalEditComponent implements OnInit {
 
+
   @Input() userEdit : any;
-
-
+  @Input() listType: any ;
   constructor(private dataservice:DataService, private router : Router) { }
 
   ngOnInit(): void {
@@ -20,7 +20,8 @@ export class ModalEditComponent implements OnInit {
   }
   edit(value: any){
     value.maNhom = this.userEdit.maNhom;
-    console.log(value);
+    value.taiKhoan = this.userEdit.taiKhoan;
+
     this.dataservice.put("QuanLyNguoiDung/CapNhatThongTinNguoiDung",value).subscribe((result:any)=>{
       if (result) {
         this.router.navigateByUrl('/admin', { skipLocationChange: true }).then(() => {
@@ -28,6 +29,10 @@ export class ModalEditComponent implements OnInit {
       });
       }
     })
+  }
+
+  setInputValue(type : any){
+    this.userEdit.maLoaiNguoiDung = type.maLoaiNguoiDung;
   }
 
 }
