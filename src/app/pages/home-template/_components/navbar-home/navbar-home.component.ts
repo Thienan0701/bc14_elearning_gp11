@@ -26,15 +26,18 @@ export class NavbarHomeComponent implements OnInit {
     })
   }
   clickme(value: any){
-    this.router.navigate(['/search-course',value]).then(()=>{
-       window.location.reload();
+    //Thay the duong link = home va tro lai dg link can huong den de ko phai reload trang
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+      this.router.navigate(['/search-course',value]);
     });
+
   }
 
   navigateitem(item:any){
-    this.router.navigate([`/list-course-menu/${ item }`]).then(()=>{
-      window.location.reload();
-    })
+
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+      this.router.navigate([`/list-course-menu/${ item }`]);
+  });
   }
 
   Logout(){

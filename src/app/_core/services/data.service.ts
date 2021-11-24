@@ -4,7 +4,7 @@ import {Observable, throwError} from "rxjs";
 import {tap, catchError} from "rxjs/operators"
 import { environment } from 'src/environments/environment';
 
-let urlApi = "";
+let urlApi = '';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +16,7 @@ export class DataService {
   }
 
   get(uri: any) : Observable<any>{
-    const url = `${urlApi}/${uri}`
+    const url = `${urlApi}/${uri}`;
     // const observable =
     return this.http.get(url).pipe(
       tap(()=>{}),
@@ -27,7 +27,7 @@ export class DataService {
   }
 
   post(uri: any, data: any) : Observable<any>{
-    const url = `${urlApi}/${uri}`
+    const url = `${urlApi}/${uri}`;
     return this.http.post(url, data).pipe(
       tap(()=>{}),
       catchError((error: any)=>{
@@ -37,7 +37,7 @@ export class DataService {
   }
 
   put(uri: any, data: any) : Observable<any>{
-    const url = `${urlApi}/${uri}`
+    const url = `${urlApi}/${uri}`;
     return this.http.put(url, data).pipe(
       tap(()=>{}),
       catchError((error: any)=>{
@@ -47,12 +47,12 @@ export class DataService {
   }
 
   delete(uri: any) : Observable<any>{
-    const url = `${urlApi}/${uri}`
+    const url = `${urlApi}/${uri}`;
 
     let option : any = {
       responseType: 'text'
     };
-    return this.http.delete(url, option).pipe(
+    return this.http.delete(url).pipe(
       tap(()=>{}),
       catchError((error: any)=>{
         return this.handleErrors(error);

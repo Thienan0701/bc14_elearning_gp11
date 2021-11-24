@@ -3,6 +3,7 @@ import { DataService } from '@services/data.service';
 import {Subscription} from "rxjs";
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-user-info',
   templateUrl: './user-info.component.html',
@@ -16,6 +17,8 @@ export class UserInfoComponent implements OnInit {
   phonenumber: any;
   accessToken: any;
   listGhiDanh : any = [];
+  //mang dung chua gia tri sau filter
+  listFilter: any = [];
 
   subInfo = new Subscription();
 
@@ -27,11 +30,12 @@ export class UserInfoComponent implements OnInit {
 
   }
 
+
   getUserInfo(){
     const account: any= localStorage.getItem('UserAdmin');
     // console.log(account);
     this.accessToken=JSON.parse(account).accessToken;
-    this.subInfo=this.dataservice.post("QuanLyNguoiDung/ThongTinNguoiDung",this.accessToken).subscribe((result:any)=>{
+    this.subInfo=this.dataservice.post('QuanLyNguoiDung/ThongTinNguoiDung',this.accessToken).subscribe((result:any)=>{
       this.fullname=result.hoTen;
       this.username=result.taiKhoan;
       this.email=result.email;
@@ -41,16 +45,24 @@ export class UserInfoComponent implements OnInit {
     })
   }
 
-  unsubscribe(course: any){
+  unsubscribeCourse(course: any){
     const account: any= localStorage.getItem('UserAdmin');
     const sub : any = {
       maKhoaHoc : course.maKhoaHoc,
       taiKhoan : JSON.parse(account).taiKhoan
-    }
+    };
     this.dataservice.post(`QuanLyKhoaHoc/HuyGhiDanh`, sub).subscribe();
 
-    this.ngOnInit();
 
+    this.getUserInfo();
+
+  }
+
+
+  searchCourse(keyword:any){
+      this.listFilter=this.listGhiDanh.filter((user:any) => {
+      return user.tenKhoaHoc.toLowerCase().indexOf(keyword.toLowerCase()) !== -1
+      });
   }
   ngOnDestroy(){
     this.subInfo.unsubscribe();

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from "@angular/router"
 import { DataService } from 'src/app/_core/services/data.service';
 import { Router } from '@angular/router';
+import {Location} from '@angular/common';
 @Component({
   selector: 'app-detail-course',
   templateUrl: './detail-course.component.html',
@@ -10,7 +11,7 @@ import { Router } from '@angular/router';
 export class DetailCourseComponent implements OnInit {
   detail: any = [];
   id: any;
-  constructor(private activatedRoute : ActivatedRoute, private data:DataService, private router :Router) { }
+  constructor(private activatedRoute : ActivatedRoute, private data:DataService, private router :Router,private _location: Location) { }
 
   ngOnInit(): void {
     this.getParamsFromUrl();
@@ -38,8 +39,9 @@ export class DetailCourseComponent implements OnInit {
       maKhoaHoc : object.maKhoaHoc,
       taiKhoan : JSON.parse(account).taiKhoan
     }
-    this.data.post("QuanLyKhoaHoc/GhiDanhKhoaHoc",sub).subscribe();
-    this.router.navigate(['/user-info']);
+    this.data.post("QuanLyKhoaHoc/DangKyKhoaHoc",sub).subscribe();
+    this._location.back();
+    //this.router.navigate(['/user-info']);
   }
 
 }

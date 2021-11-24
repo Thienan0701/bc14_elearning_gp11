@@ -25,10 +25,12 @@ export class ModalInfoComponent implements OnInit {
     const userInfo: any = localStorage.getItem('UserAdmin');
     info.maLoaiNguoiDung= JSON.parse(userInfo).maLoaiNguoiDung;
     info.maNhom= "GP01";
-    console.log(info);
+
     this.dataservice.put("QuanLyNguoiDung/CapNhatThongTinNguoiDung",info).subscribe((result:any)=>{
       if (result) {
-        this.router.navigate(['/user-info']).then(()=>window.location.reload())
+        this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+          this.router.navigate(['/user-info']);
+      });
       }
     })
   }

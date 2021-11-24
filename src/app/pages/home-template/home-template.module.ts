@@ -6,7 +6,8 @@ import { HomeTemplateRoutingModule } from './home-template-routing.module';
 import { HomeTemplateComponent } from './home-template.component';
 import { NavbarHomeComponent } from './_components/navbar-home/navbar-home.component';
 import {MaterialModule} from '../../_core/shares/material-module';
-import { FooterHomeComponent } from './_components/footer-home/footer-home.component'
+import { FooterHomeComponent } from './_components/footer-home/footer-home.component';
+import { ButtonsModule, WavesModule, DropdownModule} from 'ng-uikit-pro-standard';
 
 
 
@@ -20,6 +21,9 @@ import { FooterHomeComponent } from './_components/footer-home/footer-home.compo
     CommonModule,
     HomeTemplateRoutingModule,
     MaterialModule,
+    ButtonsModule,
+    WavesModule,
+    DropdownModule.forRoot()
   ]
 })
 export class HomeTemplateModule { }

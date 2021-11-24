@@ -14,7 +14,7 @@ export class AuthGuard implements CanActivate {
       return true;
     }
     //Chua login-redirect ve trang auth
-    this.router.navigate(['/auth'])
+    this.router.navigate(['/auth']);
     return false;
   }
 }

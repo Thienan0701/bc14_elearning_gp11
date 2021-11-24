@@ -1,7 +1,7 @@
 
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SidenavModule, WavesModule, AccordionModule,IconsModule  } from 'ng-uikit-pro-standard'
+import { SidenavModule, WavesModule, AccordionModule,IconsModule,DropdownModule  } from 'ng-uikit-pro-standard'
 
 import { AdminTemplateRoutingModule } from './admin-template-routing.module';
 import { AdminTemplateComponent } from './admin-template.component';
@@ -22,7 +22,8 @@ import { NavbarAdminComponent } from './_components/navbar-admin/navbar-admin.co
     SidenavModule,
     WavesModule,
     AccordionModule,
-    IconsModule
+    IconsModule,
+    DropdownModule.forRoot()
   ]
 })
 export class AdminTemplateModule { }

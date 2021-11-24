@@ -52,22 +52,69 @@
     <!-- Thong tin khoa hoc da dang ky -->
     <mat-tab label="My Courses">
       <div class="container mt-2">
-        <h3 class="bg-primary text-light mt-3">My subcribed courses</h3>
+        <div class="row">
+          <div class="col-md-6">
+            <h3 class="text-primary font-italic font-weight-bold mt-3">
+              My subcribed courses
+            </h3>
+          </div>
+          <div class="col-md-6">
+            <div class="form-outline">
+              <input
+                type="search"
+                id="form1"
+                class="form-control"
+                placeholder="course name"
+                aria-label="Search"
+                #inputSearch
+                [ngModel]="searchCourse(inputSearch.value)"
+              />
+            </div>
+          </div>
+        </div>
+
         <div class="row mt-2 mb-2">
-          <ng-container *ngFor="let course of listGhiDanh; let index = index">
-            <div class="col-md-6">
-              <div class="card mb-3 max-width-400">
-                <div class="col-md-12 d-flex justify-content-center">
-                  <h4>{{ course.tenKhoaHoc }}</h4>
-                </div>
-                <div class="col-md-12 d-flex justify-content-center mb-2">
-                  <button class="btn btn-danger" (click)="unsubscribe(course)">
-                    Delete
-                  </button>
+          <div *ngIf="!listFilter; then thenBlock; else elseBlock"></div>
+          <ng-template #thenBlock>
+            <ng-container *ngFor="let course of listGhiDanh; let index = index">
+              <div class="col-md-6">
+                <div class="card mb-3 max-width-400">
+                  <div class="col-md-12 d-flex justify-content-center">
+                    <h4 class="text-info">{{ course.tenKhoaHoc }}</h4>
+                  </div>
+                  <div class="col-md-12 d-flex justify-content-center mb-2">
+                    <button
+                      class="btn btn-danger"
+                      (click)="unsubscribeCourse(course)"
+                    >
+                      Delete
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div>
-          </ng-container>
+            </ng-container>
+          </ng-template>
+          <ng-template #elseBlock>
+            <ng-container *ngFor="let course of listFilter; let index = index">
+              <div class="col-md-6">
+                <div class="card mb-3 max-width-400">
+                  <div class="col-md-12 d-flex justify-content-center">
+                    <h3 class="text-primary font-weight-bold">
+                      {{ course.tenKhoaHoc }}
+                    </h3>
+                  </div>
+                  <div class="col-md-12 d-flex justify-content-center mb-2">
+                    <button
+                      class="btn btn-danger"
+                      (click)="unsubscribeCourse(course)"
+                    >
+                      Delete
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+          </ng-template>
         </div>
       </div>
     </mat-tab>

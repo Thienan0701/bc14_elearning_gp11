@@ -10,22 +10,168 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Modal title</h5>
+        <h5 class="modal-title text-primary font-weight-bold">
+          Subscibe for user: {{ userSubcribe }}
+        </h5>
+
         <button
           type="button"
           class="close"
           data-dismiss="modal"
           aria-label="Close"
+          (click)="destroy()"
         >
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">Body</div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-6">
+            <!-- Course name form -->
+            <div class="input-group rounded">
+              <input
+                type="search"
+                id="searchInput"
+                class="form-control"
+                style="width: 200px"
+                placeholder="coursename"
+                [disabled]="true"
+                [value]="coursename"
+                #searchInput
+              />
+              <div class="dropdown" mdbDropdown>
+                <button
+                  mdbDropdownToggle
+                  mdbBtn
+                  color="primary"
+                  class="btn btn-primary dropdown-toggle waves-light"
+                  type="button"
+                  mdbWavesEffect
+                ></button>
+                <div class="dropdown-menu dropdown-primary">
+                  <ng-container *ngFor="let course of listCourse">
+                    <a class="dropdown-item" (click)="setInputvalue(course)">{{
+                      course.tenKhoaHoc
+                    }}</a>
+                  </ng-container>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 d-flex justify-content-end">
+            <!-- Add to waiting list -->
+            <button class="btn btn-primary" (click)="addToWaiting()">
+              Add
+            </button>
+          </div>
+        </div>
+
+        <hr />
+        <!-- Course name end -->
+        <!-- Table list waiting confirm -->
+        <p class="mt-1 text-primary font-italic font-weight-bold">
+          Wating for confirmation:
+        </p>
+        <div
+          class="table-responsive-md"
+          style="height: 200px; overflow: scroll"
+        >
+          <table class="table table-striped table-bordered">
+            <thead>
+              <tr>
+                <th>Index</th>
+                <th>Name</th>
+                <th>Confirm</th>
+              </tr>
+            </thead>
+            <tbody *ngIf="listWaiting">
+              <ng-container
+                *ngFor="let course of listWaiting; let index = index"
+              >
+                <tr>
+                  <td scope="row">{{ index + 1 }}</td>
+                  <td>{{ course.tenKhoaHoc }}</td>
+                  <td>
+                    <div class="d-flex flex-row">
+                      <div class="col">
+                        <!-- Subcribe -->
+                        <a title="Subscribe" (click)="confirmSubscribe(course)">
+                          <mdb-icon
+                            class="text-primary"
+                            far
+                            icon="address-book"
+                          ></mdb-icon>
+                        </a>
+                      </div>
+                      <!-- Delete -->
+                      <div class="col">
+                        <a title="Delete" (click)="DeleteFromWait(course)">
+                          <mdb-icon
+                            class="text-danger"
+                            fas
+                            icon="calendar-times"
+                          ></mdb-icon
+                        ></a>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </ng-container>
+            </tbody>
+          </table>
+        </div>
+        <hr />
+        <p class="mt-1 text-primary font-italic font-weight-bold">
+          Confirmed courses:
+        </p>
+        <div
+          class="table-responsive-md"
+          style="height: 200px; overflow: scroll"
+        >
+          <table class="table table-striped table-bordered">
+            <thead>
+              <tr>
+                <th>Index</th>
+                <th>Name</th>
+                <th>Confirm</th>
+              </tr>
+            </thead>
+            <tbody *ngIf="listConfirmed">
+              <ng-container
+                *ngFor="let course of listConfirmed; let index = index"
+              >
+                <tr>
+                  <td scope="row">{{ index + 1 }}</td>
+                  <td>{{ course.tenKhoaHoc }}</td>
+                  <td>
+                    <div class="d-flex flex-row">
+                      <!-- Delete -->
+                      <div class="col">
+                        <a title="Delete" (click)="DeleteFromConfirmed(course)">
+                          <mdb-icon
+                            class="text-danger"
+                            fas
+                            icon="calendar-times"
+                          ></mdb-icon
+                        ></a>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </ng-container>
+            </tbody>
+          </table>
+        </div>
+      </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-dismiss="modal"
+          (click)="destroy()"
+        >
           Close
         </button>
-        <button type="button" class="btn btn-primary">Save</button>
       </div>
     </div>
   </div>
