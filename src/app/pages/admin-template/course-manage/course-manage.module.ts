@@ -6,11 +6,15 @@ import {MatTabsModule} from '@angular/material/tabs';
 
 import { CourseManageRoutingModule } from './course-manage-routing.module';
 import { CourseManageComponent } from './course-manage.component';
+import { ModalSubscribeCourseComponent } from './modal-subscribe-course/modal-subscribe-course.component';
+import { ModalEditCourseComponent } from './modal-edit-course/modal-edit-course.component';
 
 
 @NgModule({
   declarations: [
-    CourseManageComponent
+    CourseManageComponent,
+    ModalSubscribeCourseComponent,
+    ModalEditCourseComponent
   ],
   imports: [
     CommonModule,

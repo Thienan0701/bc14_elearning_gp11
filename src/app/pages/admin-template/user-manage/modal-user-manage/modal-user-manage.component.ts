@@ -45,7 +45,7 @@ export class ModalUserManageComponent implements OnInit {
       tenKhoaHoc: this.coursename
     }
     let index = this.listWaiting.indexOf(obj2);
-    if (index === -1) {
+    if (index == -1) {
       this.listWaiting.push(obj2);
     }
 

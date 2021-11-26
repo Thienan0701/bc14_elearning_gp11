@@ -1,6 +1,284 @@
 <div class="container mb-2">
   <mat-tab-group>
-    <mat-tab label="List courses"> Content 1 </mat-tab>
-    <mat-tab label="Add course"> Content 2 </mat-tab>
+    <mat-tab label="List courses">
+      <div class="container mt-2 mb-3">
+        <!-- Search course -->
+        <div class="container d-flex justify-content-end">
+          <div class="input-group rounded mt-3 mb-3" style="width: 600px">
+            <input
+              type="search"
+              id="searchInput"
+              class="form-control"
+              style="width: 500px"
+              placeholder="search with keyword"
+              #searchInput
+            />
+            <button type="button" class="btn btn-primary">
+              <mdb-icon fas icon="search"></mdb-icon>
+            </button>
+          </div>
+        </div>
+
+        <!-- Table list course -->
+        <div class="table-responsive">
+          <table class="table table-striped table-bordered">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">CourseID</th>
+                <th scope="col">Coursename</th>
+                <th scope="col">Image</th>
+                <th scope="col">Viewed</th>
+                <th scope="col">Creator</th>
+                <th scope="col">TODO</th>
+              </tr>
+            </thead>
+            <tbody *ngIf="listCoursePaging">
+              <ng-container
+                *ngFor="let course of listCoursePaging; let index = index"
+              >
+                <tr>
+                  <th scope="row">{{ index + 1 }}</th>
+                  <td>{{ course.maKhoaHoc }}</td>
+                  <td>{{ course.tenKhoaHoc }}</td>
+                  <td>{{ course.hinhAnh }}</td>
+                  <td>{{ course.luotXem }}</td>
+                  <td>{{ course.nguoiTao.hoTen }}</td>
+                  <td>
+                    <div class="d-flex flex-row">
+                      <div class="col">
+                        <!-- Subcribe for user -->
+                        <a
+                          title="Subscribe"
+                          data-toggle="modal"
+                          data-target="#modalSubscribeCourse"
+                          (click)="getUsersNotInCource(course.maKhoaHoc)"
+                        >
+                          <mdb-icon
+                            class="text-primary"
+                            far
+                            icon="address-book"
+                          ></mdb-icon>
+                        </a>
+                      </div>
+                      <!-- Edit course -->
+                      <div class="col">
+                        <a
+                          title="Edit"
+                          data-toggle="modal"
+                          data-target="#modelEditCourse"
+                        >
+                          <mdb-icon
+                            class="text-warning"
+                            far
+                            icon="edit"
+                          ></mdb-icon
+                        ></a>
+                      </div>
+                      <!-- Delete course -->
+                      <div class="col">
+                        <a title="Delete">
+                          <mdb-icon
+                            class="text-danger"
+                            fas
+                            icon="calendar-times"
+                          ></mdb-icon
+                        ></a>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </ng-container>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Phan trang list course -->
+        <nav aria-label="Page navigation" class="mt-1">
+          <ul class="pagination justify-content-center">
+            <ng-container *ngIf="number > 1">
+              <li class="page-item text-primary">
+                <a
+                  class="page-link text-info font-weight-bold"
+                  (click)="getListofPage(number - 1)"
+                  >Previous</a
+                >
+              </li>
+            </ng-container>
+
+            <ng-container *ngFor="let num of pagenumList">
+              <li class="page-item text-primary">
+                <a
+                  class="page-link text-info font-weight-bold"
+                  (click)="getListofPage(num)"
+                  >{{ num }}</a
+                >
+              </li>
+            </ng-container>
+            <ng-container *ngIf="number <= totalpages">
+              <li class="page-item text-primary">
+                <a
+                  class="page-link text-info font-weight-bold"
+                  (click)="getListofPage(number + 1)"
+                  >Next</a
+                >
+              </li>
+            </ng-container>
+          </ul>
+        </nav>
+      </div>
+    </mat-tab>
+    <!-- Them khoa hoc -->
+    <mat-tab label="Add course">
+      <form
+        class="container mt-2 mb-4"
+        #addCourseForm="ngForm"
+        (ngSubmit)="addCourse(addCourseForm.value)"
+      >
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="text-primary font-weight-bold">Course Id:</label>
+              <input
+                type="text"
+                class="form-control"
+                name="maKhoaHoc"
+                ngModel
+                placeholder="ma khoa hoc"
+              />
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="text-primary font-weight-bold">Review:</label>
+              <input
+                type="text"
+                class="form-control"
+                name="danhGia"
+                ngModel
+                placeholder="Danh gia"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="text-primary font-weight-bold">Course name:</label>
+              <input
+                type="text"
+                class="form-control"
+                name="tenKhoaHoc"
+                ngModel
+                placeholder="Ten khoa hoc"
+              />
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="text-primary font-weight-bold">Alias:</label>
+              <input
+                type="email"
+                class="form-control"
+                name="biDanh"
+                ngModel
+                placeholder="biDanh"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="text-primary font-weight-bold">Menu course:</label>
+              <div class="input-group rounded">
+                <select
+                  class="custom-select custom-select-md"
+                  ngModel
+                  name="maDanhMucKhoaHoc"
+                  #maDanhMucKhoaHoc
+                  *ngIf="listDanhmuc"
+                >
+                  <ng-container *ngFor="let item of listDanhmuc">
+                    <option value="{{ item.maDanhMuc }}">
+                      {{ item.maDanhMuc }}
+                    </option>
+                  </ng-container>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="text-primary font-weight-bold">Viewed:</label>
+              <input
+                type="text"
+                class="form-control"
+                name="luotXem"
+                ngModel
+                placeholder="Enter email"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="text-primary font-weight-bold">Date create:</label>
+              <input
+                type="text"
+                class="form-control"
+                name="ngayTao"
+                ngModel
+                placeholder="DD/MM/YYYY"
+              />
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="text-primary font-weight-bold">Image:</label>
+              <input
+                type="text"
+                class="form-control"
+                name="hinhAnh"
+                ngModel
+                placeholder="image link"
+                #hinhAnh
+              />
+              <!-- <ckeditor
+                [editor]="Editor"
+                data="<p>Hello, world!</p>"
+              ></ckeditor> -->
+
+              <button class="btn btn-primary">Upload</button>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label class="text-primary font-weight-bold">Description:</label>
+              <textarea
+                ngModel
+                class="form-control rounded-0 w-100"
+                name="moTa"
+                style="width: 800px"
+                rows="6"
+              ></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="row d-flex justify-content-center">
+          <button type="submit" class="btn btn-primary">ADD</button>
+        </div>
+      </form>
+    </mat-tab>
   </mat-tab-group>
 </div>
+<app-modal-subscribe-course
+  [maKhoaHoc]="maKhoaHoc"
+  [listUsers]="listUsers"
+  [listUserWaiting]="listUserWaiting"
+  [listUserConfirmed]="listUserConfirmed"
+></app-modal-subscribe-course>

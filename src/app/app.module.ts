@@ -2,7 +2,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthInterceptor } from './_core/guards/jwt.interceptor';
@@ -27,6 +27,7 @@ registerLocaleData(en);
     NoopAnimationsModule,
     NgbModule,
     FormsModule,
+    CKEditorModule,
     MDBBootstrapModule.forRoot()
   ],
   providers: [
