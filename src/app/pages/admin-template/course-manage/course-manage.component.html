@@ -77,7 +77,10 @@
                       </div>
                       <!-- Delete course -->
                       <div class="col">
-                        <a title="Delete">
+                        <a
+                          title="Delete"
+                          (click)="deleteCourse(course.maKhoaHoc)"
+                        >
                           <mdb-icon
                             class="text-danger"
                             fas
@@ -237,20 +240,28 @@
           <div class="col-md-6">
             <div class="form-group">
               <label class="text-primary font-weight-bold">Image:</label>
-              <input
+              <!-- <input
                 type="text"
                 class="form-control"
-                name="hinhAnh"
+
                 ngModel
                 placeholder="image link"
                 #hinhAnh
-              />
-              <!-- <ckeditor
+              /> -->
+              <ckeditor
                 [editor]="Editor"
-                data="<p>Hello, world!</p>"
-              ></ckeditor> -->
+                name="hinhAnh"
+                ngModel
+                #hinhAnh
+              ></ckeditor>
 
-              <button class="btn btn-primary">Upload</button>
+              <button
+                class="btn btn-primary"
+                type="submit"
+                (click)="upLoadImg(hinhAnh.data)"
+              >
+                Upload
+              </button>
             </div>
           </div>
         </div>
@@ -282,3 +293,6 @@
   [listUserWaiting]="listUserWaiting"
   [listUserConfirmed]="listUserConfirmed"
 ></app-modal-subscribe-course>
+
+<!-- Modal edit -->
+<app-modal-edit-course></app-modal-edit-course>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '@services/data.service';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 
 @Component({
@@ -10,9 +11,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./course-manage.component.scss']
 })
 
+
 export class CourseManageComponent implements OnInit {
 
 
+
+  public Editor = ClassicEditor ;
   //Lay danh sach phan trang
   number: number = 1; //Stt ttrang ban dau
   listCoursePaging: any =[];
@@ -60,14 +64,14 @@ export class CourseManageComponent implements OnInit {
 
   }
 
-  // upLoadImg(img:any){
-  //   this.dataservice.post('QuanLyKhoaHoc/ThemKhoaHocUploadHinh',img).subscribe((result)=>{
-  //     if (result) {
-  //       this.isDisabled=true;
-  //       console.log(this.isDisabled);
-  //     }
-  //   })
-  // }
+  upLoadImg(img:any){
+    console.log(img)
+    // this.dataservice.post('QuanLyKhoaHoc/ThemKhoaHocUploadHinh',img).subscribe((result)=>{
+    //   if (result) {
+    //     this.isDisabled=true;
+    //   }
+    // })
+  }
 
   addCourse(value : any){
     value.maNhom="GP01";
@@ -120,6 +124,12 @@ export class CourseManageComponent implements OnInit {
     this.dataservice.post('QuanLyNguoiDung/LayDanhSachHocVienKhoaHoc',obj).subscribe((result: any)=>{
       this.listUserConfirmed= result;
     })
+  }
+
+  //Xoa khoa hoc
+  deleteCourse(maKhoaHoc:any){
+    this.dataservice.delete(`QuanLyKhoaHoc/XoaKhoaHoc?MaKhoaHoc=${maKhoaHoc}`).subscribe();
+    this.getListofPage(this.number);
   }
 
   ngOnDestroy(){
