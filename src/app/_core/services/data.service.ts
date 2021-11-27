@@ -12,7 +12,7 @@ let urlApi = '';
 export class DataService {
 
   constructor(private http: HttpClient) {
-    urlApi = environment.urlApi;
+    urlApi = environment.apiUrl;
   }
 
   get(uri: any) : Observable<any>{

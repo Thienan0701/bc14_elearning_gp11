@@ -118,7 +118,7 @@ export class CourseManageComponent implements OnInit {
   getUserWaiting(value: any){
     let obj : any = {
       maKhoaHoc : value
-    }
+    };
     this.dataservice.post('QuanLyNguoiDung/LayDanhSachHocVienChoXetDuyet',obj).subscribe((result: any)=>{
       this.listUserWaiting = result;
     })
@@ -128,7 +128,7 @@ export class CourseManageComponent implements OnInit {
   getUserConfirmed(value: any){
     let obj : any = {
       maKhoaHoc : value
-    }
+    };
     this.dataservice.post('QuanLyNguoiDung/LayDanhSachHocVienKhoaHoc',obj).subscribe((result: any)=>{
       this.listUserConfirmed= result;
     })
