@@ -47,7 +47,7 @@
                   type="button"
                   mdbWavesEffect
                 ></button>
-                <div class="dropdown-menu dropdown-primary">
+                <div class="dropdown-menu dropdown-primary" *ngIf="listUsers">
                   <ng-container *ngFor="let user of listUsers">
                     <a class="dropdown-item" (click)="setInputvalue(user)">{{
                       user.taiKhoan
@@ -59,7 +59,9 @@
           </div>
           <div class="col-md-6 d-flex justify-content-end">
             <!-- Add to waiting list -->
-            <button class="btn btn-primary">Add</button>
+            <button class="btn btn-primary" (click)="addToWaiting()">
+              Add
+            </button>
           </div>
         </div>
 
@@ -92,7 +94,7 @@
                     <div class="d-flex flex-row">
                       <div class="col">
                         <!-- Subcribe -->
-                        <a title="Subscribe">
+                        <a title="Subscribe" (click)="confirmSubscribe(user)">
                           <mdb-icon
                             class="text-primary"
                             far
@@ -102,7 +104,7 @@
                       </div>
                       <!-- Delete -->
                       <div class="col">
-                        <a title="Delete">
+                        <a title="Delete" (click)="deleteFromWait(user)">
                           <mdb-icon
                             class="text-danger"
                             fas
@@ -144,7 +146,7 @@
                     <div class="d-flex flex-row">
                       <!-- Delete -->
                       <div class="col">
-                        <a title="Delete">
+                        <a title="Delete" (click)="deleteFromConfirm(user)">
                           <mdb-icon
                             class="text-danger"
                             fas

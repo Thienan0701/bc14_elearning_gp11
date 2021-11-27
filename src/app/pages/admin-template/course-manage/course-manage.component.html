@@ -13,7 +13,11 @@
               placeholder="search with keyword"
               #searchInput
             />
-            <button type="button" class="btn btn-primary">
+            <button
+              type="button"
+              class="btn btn-primary"
+              (click)="searchCourse(searchInput.value)"
+            >
               <mdb-icon fas icon="search"></mdb-icon>
             </button>
           </div>
@@ -148,7 +152,27 @@
                 name="maKhoaHoc"
                 ngModel
                 placeholder="ma khoa hoc"
+                required
+                #Makhoahoc="ngModel"
+                minlength="3"
+                maxlength="7"
               />
+              <div
+                class="alert alert-danger"
+                *ngIf="
+                  Makhoahoc.errors && (Makhoahoc.dirty || Makhoahoc.touched)
+                "
+              >
+                <div *ngIf="Makhoahoc.errors.required">Id ko dc rong</div>
+
+                <div
+                  *ngIf="
+                    Makhoahoc.errors.minlength || Makhoahoc.errors.maxlength
+                  "
+                >
+                  Do dai phai tu 3 den 7 ki tu
+                </div>
+              </div>
             </div>
           </div>
           <div class="col-md-6">
@@ -174,7 +198,27 @@
                 name="tenKhoaHoc"
                 ngModel
                 placeholder="Ten khoa hoc"
+                #tenKhoaHoc="ngModel"
+                required
+                minlength="5"
+                maxlength="30"
               />
+              <div
+                class="alert alert-danger"
+                *ngIf="
+                  tenKhoaHoc.errors && (tenKhoaHoc.dirty || tenKhoaHoc.touched)
+                "
+              >
+                <div *ngIf="tenKhoaHoc.errors.required">Id ko dc rong</div>
+
+                <div
+                  *ngIf="
+                    tenKhoaHoc.errors.minlength || tenKhoaHoc.errors.maxlength
+                  "
+                >
+                  Do dai phai tu 5 den 20 ki tu
+                </div>
+              </div>
             </div>
           </div>
           <div class="col-md-6">
@@ -240,28 +284,15 @@
           <div class="col-md-6">
             <div class="form-group">
               <label class="text-primary font-weight-bold">Image:</label>
-              <!-- <input
-                type="text"
-                class="form-control"
-
-                ngModel
-                placeholder="image link"
-                #hinhAnh
-              /> -->
-              <ckeditor
+              <input type="file" class="form-control" name="hinhAnh" ngModel />
+              <!-- <ckeditor
+                type="file"
                 [editor]="Editor"
                 name="hinhAnh"
+                data=""
                 ngModel
                 #hinhAnh
-              ></ckeditor>
-
-              <button
-                class="btn btn-primary"
-                type="submit"
-                (click)="upLoadImg(hinhAnh.data)"
-              >
-                Upload
-              </button>
+              ></ckeditor> -->
             </div>
           </div>
         </div>
@@ -281,7 +312,13 @@
         </div>
 
         <div class="row d-flex justify-content-center">
-          <button type="submit" class="btn btn-primary">ADD</button>
+          <button
+            type="submit"
+            class="btn btn-primary"
+            [disabled]="!addCourseForm.valid"
+          >
+            ADD
+          </button>
         </div>
       </form>
     </mat-tab>

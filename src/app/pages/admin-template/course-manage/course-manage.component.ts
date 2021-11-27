@@ -3,7 +3,7 @@ import { DataService } from '@services/data.service';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-
+// import Base64UploadAdapter from '@ckeditor/ckeditor5-upload/src/adapters/base64uploadadapter';
 
 @Component({
   selector: 'app-course-manage',
@@ -16,7 +16,8 @@ export class CourseManageComponent implements OnInit {
 
 
 
-  public Editor = ClassicEditor ;
+  public Editor = ClassicEditor;
+
   //Lay danh sach phan trang
   number: number = 1; //Stt ttrang ban dau
   listCoursePaging: any =[];
@@ -61,30 +62,37 @@ export class CourseManageComponent implements OnInit {
    .subscribe((result: any)=>{
      this.listCoursePaging= result.items.sort((a: any, b: any) => (a.tenKhoaHoc > b.tenKhoaHoc) ? 1 : -1);
    })
-
+  }
+  //Search course
+   //Search user
+   searchCourse(keyword :any){
+    if(keyword){
+      this.dataservice.get(`QuanLyKhoaHoc/LayDanhSachKhoaHoc?tenKhoaHoc=${keyword}&MaNhom=GP01`).subscribe((result:any)=>{
+        this.listCoursePaging=result;
+      })
+    }else{
+      this.getListofPage(this.number);
+    }
   }
 
   upLoadImg(img:any){
-    console.log(img)
-    // this.dataservice.post('QuanLyKhoaHoc/ThemKhoaHocUploadHinh',img).subscribe((result)=>{
-    //   if (result) {
-    //     this.isDisabled=true;
-    //   }
-    // })
+    this.dataservice.post('QuanLyKhoaHoc/ThemKhoaHocUploadHinh',img).subscribe();
   }
+
+
 
   addCourse(value : any){
     value.maNhom="GP01";
     const account: any= localStorage.getItem('UserAdmin');
     value.taiKhoanNguoiTao= JSON.parse(account).taiKhoan;
-    console.log(value);
+    this.upLoadImg(btoa(value.hinhAnh));
     this.dataservice.post('QuanLyKhoaHoc/ThemKhoaHoc', value).subscribe((result)=>{
       if (result) {
         this.router.navigateByUrl('/admin/dashboard', { skipLocationChange: true }).then(() => {
           this.router.navigate(['/admin/course-manage']);
       });
       }
-    })
+    });
   }
 
   getDanhMuc(){
