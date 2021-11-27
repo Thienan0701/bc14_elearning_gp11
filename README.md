@@ -2,15 +2,18 @@
 
 -Ngô Trần Thiện Ân:
 *Home template:
--Navbar: Menu item, search box,...
--List course from menu
--Search course page
--User Info page
--Login page
++Navbar: Menu item, search box,...
++List course from menu
++Search course page
++User Info page
++Login page
 *Admin Template:
--User manage page
--Course manage page
--Bùi Minh Hùng;
++User manage page
++Course manage page
+
+-Bùi Minh Hùng:
++Home page
++Detail page layout
 
 # Link deploy:
 
