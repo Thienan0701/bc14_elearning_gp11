@@ -1,7 +1,7 @@
-import { Component, Input, OnInit, SimpleChanges, Output, EventEmitter  } from '@angular/core';
+import { Component, Input, OnInit} from '@angular/core';
 import { DataService } from '@services/data.service';
 import { Subscription } from 'rxjs';
-import { Router } from '@angular/router';
+
 
 
 @Component({
@@ -20,7 +20,7 @@ export class ModalUserManageComponent implements OnInit {
   @Input() listWaiting: any = [];
   @Input() listConfirmed: any = [];
   subModal = new Subscription();
-  constructor(private dataservice: DataService, private router : Router) { }
+  constructor(private dataservice: DataService) { }
 
   ngOnInit():void{
 
@@ -37,13 +37,13 @@ export class ModalUserManageComponent implements OnInit {
     const obj: any = {
       maKhoaHoc: this.maKhoahoc,
       taiKhoan: this.userSubcribe
-    }
+    };
     this.dataservice.post('QuanLyKhoaHoc/DangKyKhoaHoc',obj).subscribe();
 
     const obj2: any = {
       maKhoaHoc: this.maKhoahoc,
       tenKhoaHoc: this.coursename
-    }
+    };
     let index = this.listWaiting.indexOf(obj2);
     if (index == -1) {
       this.listWaiting.push(obj2);
@@ -56,7 +56,7 @@ export class ModalUserManageComponent implements OnInit {
     let obj: any = {
       maKhoaHoc: course.maKhoaHoc,
       taiKhoan: this.userSubcribe
-    }
+    };
     this.dataservice.post('QuanLyKhoaHoc/HuyGhiDanh',obj).subscribe();
 
     //Cap nhat lai danh sach hien thi tren modal
@@ -70,7 +70,7 @@ export class ModalUserManageComponent implements OnInit {
     let obj: any = {
       maKhoaHoc: course.maKhoaHoc,
       taiKhoan: this.userSubcribe
-    }
+    };
 
     this.dataservice.post('QuanLyKhoaHoc/HuyGhiDanh',obj).subscribe();
 
@@ -84,7 +84,7 @@ export class ModalUserManageComponent implements OnInit {
     let obj: any = {
       maKhoaHoc : course.maKhoaHoc,
       taiKhoan : this.userSubcribe
-    }
+    };
     this.dataservice.post('QuanLyKhoaHoc/GhiDanhKhoaHoc',obj).subscribe();
     let index = this.listWaiting.indexOf(course);
     this.listWaiting.splice(index, 1);

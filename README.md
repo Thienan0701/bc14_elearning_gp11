@@ -1,3 +1,21 @@
+# Bc14elearning: gp11-Công việc:
+
+-Ngô Trần Thiện Ân:
+*Home template:
+-Navbar: Menu item, search box,...
+-List course from menu
+-Search course page
+-User Info page
+-Login page
+*Admin Template:
+-User manage page
+-Course manage page
+-Bùi Minh Hùng;
+
+# Link deploy:
+
+http://gp11elearning.surge.sh/
+
 # Bc14angularrouting
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.10.

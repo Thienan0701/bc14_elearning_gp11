@@ -6,25 +6,25 @@ import { AuthGuard } from 'src/app/_core/guards/auth.guard';
 const routes: Routes = [
     //Admin page
     {
-      path: "",
+      path: '',
       component: AdminTemplateComponent,
       children:[
         {
-          path:"",
-          redirectTo:"dashboard",
-          pathMatch: "full",
+          path:'',
+          redirectTo:'dashboard',
+          pathMatch: 'full',
         },
         {
-          path: "dashboard",
-          loadChildren: ()=>import("./dashboard/dashboard.module").then((m)=>m.DashboardModule),
+          path: 'dashboard',
+          loadChildren: ()=>import('./dashboard/dashboard.module').then((m)=>m.DashboardModule),
         },
         {
-          path: "user-manage",
-          loadChildren: ()=> import("./user-manage/user-manage.module").then((m)=>m.UserManageModule),
+          path: 'user-manage',
+          loadChildren: ()=> import('./user-manage/user-manage.module').then((m)=>m.UserManageModule),
         },
         {
-          path: "course-manage",
-          loadChildren: ()=> import("./course-manage/course-manage.module").then((m)=>m.CourseManageModule),
+          path: 'course-manage',
+          loadChildren: ()=> import('./course-manage/course-manage.module').then((m)=>m.CourseManageModule),
         },
       ],
       canActivate:[AuthGuard]

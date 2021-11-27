@@ -68,7 +68,7 @@ export class UserManageComponent implements OnInit {
     if(keyword){
       this.dataService.get(`QuanLyNguoiDung/TimKiemNguoiDung?MaNhom=GP01&tuKhoa=${keyword}`).subscribe((result:any)=>{
         this.listUserPaging=result;
-      })
+      });
     }else{
       this.getListFromPage(this.number);
     }
@@ -84,7 +84,7 @@ export class UserManageComponent implements OnInit {
           this.router.navigate(['/admin/user-manage']);
       });
       }
-    })
+    });
   }
   //Lay danh sach khoa hoc user chua ghi danh va danh sach Cho phe duyet, da dc duyet
   getListCourseUser(value:string){
@@ -104,7 +104,7 @@ export class UserManageComponent implements OnInit {
       };
       this.dataService.post('QuanLyNguoiDung/LayDanhSachKhoaHocChoXetDuyet',obj).subscribe((result:any)=>{
         this.listWaiting=result;
-      })
+      });
     }
     //Lay danh sach d xet duyet
     getConfirmedList(user: string){
@@ -113,7 +113,7 @@ export class UserManageComponent implements OnInit {
       };
       this.dataService.post('QuanLyNguoiDung/LayDanhSachKhoaHocDaXetDuyet',obj).subscribe((result:any)=>{
         this.listConfirmed= result;
-      })
+      });
     }
 
     //Delete User
@@ -131,14 +131,14 @@ export class UserManageComponent implements OnInit {
       }
       this.dataService.post(`QuanLyNguoiDung/ThongTinTaiKhoan`,user).subscribe((result:any)=>{
         this.userEdit=result;
-      })
+      });
     }
 
     //lay danh sach loai nguoi dung truyen vao modal edit
     getListType(){
       this.dataService.get("QuanLyNguoiDung/LayDanhSachLoaiNguoiDung").subscribe((result:any)=>{
           this.listType = result;
-      })
+      });
     }
     ngOnDestroy(){
       this.subManage.unsubscribe();

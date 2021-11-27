@@ -28,7 +28,7 @@ export class ModalEditComponent implements OnInit {
           this.router.navigate(['/admin/user-manage']);
       });
       }
-    })
+    });
   }
 
   setInputValue(type : any){
