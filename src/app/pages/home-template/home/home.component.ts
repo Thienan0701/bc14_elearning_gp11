@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  info: string="Cybersoft"
+  info: string="Cybersoft";
   people: any = {
     name: "An",
     age: 24

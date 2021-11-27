@@ -11,7 +11,7 @@ import {Location} from '@angular/common';
 export class DetailCourseComponent implements OnInit {
   detail: any = [];
   id: any;
-  constructor(private activatedRoute : ActivatedRoute, private data:DataService, private router :Router,private _location: Location) { }
+  constructor(private activatedRoute : ActivatedRoute, private data:DataService,private _location: Location) { }
 
   ngOnInit(): void {
     this.getParamsFromUrl();
@@ -38,10 +38,9 @@ export class DetailCourseComponent implements OnInit {
     const sub : any = {
       maKhoaHoc : object.maKhoaHoc,
       taiKhoan : JSON.parse(account).taiKhoan
-    }
+    };
     this.data.post("QuanLyKhoaHoc/DangKyKhoaHoc",sub).subscribe();
     this._location.back();
-    //this.router.navigate(['/user-info']);
   }
 
 }

@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./modal.component.scss']
 })
 export class ModalComponent implements OnInit {
-  course : any
+  course : any;
   constructor(private shareData : ShareDataService) { }
 
   ngOnInit(): void {

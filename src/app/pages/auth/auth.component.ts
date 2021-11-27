@@ -26,7 +26,7 @@ export class AuthComponent implements OnInit {
         this.router.navigate(['/admin/dashboard']);
       }else{
         //Thong bao neu ma loai user = HV
-        alert("Tk ko co quyen truy cap")
+        alert("Tk ko co quyen truy cap");
       }
     })
   }

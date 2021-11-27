@@ -23,7 +23,7 @@ export class NavbarHomeComponent implements OnInit {
     this.dataservice.get("QuanLyKhoaHoc/LayDanhMucKhoaHoc").subscribe((result: any )=>{
         this.listDanhMuc = result;
 
-    })
+    });
   }
   clickme(value: any){
     //Thay the duong link = home va tro lai dg link can huong den de ko phai reload trang

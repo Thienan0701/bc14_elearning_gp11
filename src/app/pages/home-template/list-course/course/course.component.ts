@@ -14,7 +14,7 @@ export class CourseComponent implements OnInit {
   ngOnInit(): void {
   }
   xemNhanh(){
-    this.sharedata.sharingData(this.course)
+    this.sharedata.sharingData(this.course);
   }
 
 }

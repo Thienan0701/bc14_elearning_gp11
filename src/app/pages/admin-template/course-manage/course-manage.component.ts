@@ -52,7 +52,7 @@ export class CourseManageComponent implements OnInit {
       for(let i=1; i< this.totalpages; i++){
         this.pagenumList.push(i);
       }
-    })
+    });
 
   }
 
@@ -61,7 +61,7 @@ export class CourseManageComponent implements OnInit {
    this.dataservice.get(`QuanLyKhoaHoc/LayDanhSachKhoaHoc_PhanTrang?page=${num}&pageSize=8&MaNhom=GP01`)
    .subscribe((result: any)=>{
      this.listCoursePaging= result.items.sort((a: any, b: any) => (a.tenKhoaHoc > b.tenKhoaHoc) ? 1 : -1);
-   })
+   });
   }
   //Search course
    //Search user
@@ -69,7 +69,7 @@ export class CourseManageComponent implements OnInit {
     if(keyword){
       this.dataservice.get(`QuanLyKhoaHoc/LayDanhSachKhoaHoc?tenKhoaHoc=${keyword}&MaNhom=GP01`).subscribe((result:any)=>{
         this.listCoursePaging=result;
-      })
+      });
     }else{
       this.getListofPage(this.number);
     }
@@ -98,7 +98,7 @@ export class CourseManageComponent implements OnInit {
   getDanhMuc(){
     this.dataservice.get('QuanLyKhoaHoc/LayDanhMucKhoaHoc').subscribe((result: any)=>{
       this.listDanhmuc= result;
-    })
+    });
   }
 
   //Lay ds user chua dang ky khoa
@@ -109,7 +109,7 @@ export class CourseManageComponent implements OnInit {
     }
     this.dataservice.post('QuanLyNguoiDung/LayDanhSachNguoiDungChuaGhiDanh',obj).subscribe((result:any)=>{
         this.listUsers= result;
-    })
+    });
     this.getUserWaiting(maKhoaHoc);
     this.getUserConfirmed(maKhoaHoc);
   }
@@ -121,7 +121,7 @@ export class CourseManageComponent implements OnInit {
     };
     this.dataservice.post('QuanLyNguoiDung/LayDanhSachHocVienChoXetDuyet',obj).subscribe((result: any)=>{
       this.listUserWaiting = result;
-    })
+    });
   }
 
   //Lay ds user da dc duyet khoa
@@ -131,7 +131,7 @@ export class CourseManageComponent implements OnInit {
     };
     this.dataservice.post('QuanLyNguoiDung/LayDanhSachHocVienKhoaHoc',obj).subscribe((result: any)=>{
       this.listUserConfirmed= result;
-    })
+    });
   }
 
   //Xoa khoa hoc

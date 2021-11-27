@@ -20,7 +20,7 @@ export class CoursesListComponent implements OnInit {
   getListFromId(){
     this.subListCourse=this.dataservice.get(`QuanLyKhoaHoc/LayKhoaHocTheoDanhMuc?maDanhMuc=${this.id}&MaNhom=GP01`).subscribe((result:any)=>{
       this.listcourses = result;
-    })
+    });
   }
 
   ngOnDestroy(){

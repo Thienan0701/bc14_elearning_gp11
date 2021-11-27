@@ -39,7 +39,7 @@ export class PaginationListComponent implements OnInit {
     this.subList=this.dataservice.get(`QuanLyKhoaHoc/LayDanhSachKhoaHoc_PhanTrang?page=${this.page}&pageSize=8&MaNhom=GP01`)
     .subscribe((result:any)=>{
       this.pagList= result;
-    })
+    });
   }
 
   ngOnDestroy(){
