@@ -45,7 +45,12 @@
                   <th scope="row">{{ index + 1 }}</th>
                   <td>{{ course.maKhoaHoc }}</td>
                   <td>{{ course.tenKhoaHoc }}</td>
-                  <td>{{ course.hinhAnh }}</td>
+                  <td>
+                    <img
+                      [src]="course.hinhAnh"
+                      style="height: 40px; width: 60px"
+                    />
+                  </td>
                   <td>{{ course.luotXem }}</td>
                   <td>{{ course.nguoiTao.hoTen }}</td>
                   <td>

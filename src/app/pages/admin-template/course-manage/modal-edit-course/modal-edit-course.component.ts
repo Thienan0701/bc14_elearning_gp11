@@ -12,7 +12,7 @@ export class ModalEditCourseComponent implements OnInit {
   @Input() courseEdit:any;
   @Input() listDanhmuc:any;
 
-  fileToUpload: File | null = null;
+  fileToUpload: any;
 
   constructor(private data:DataService, private router:Router) { }
 
@@ -23,8 +23,20 @@ export class ModalEditCourseComponent implements OnInit {
     this.data.post('QuanLyKhoaHoc/CapNhatKhoaHocUpload',img).subscribe();
   }
 
-  handleFileInput(files: FileList) {
-    this.fileToUpload = files.item(0);
+
+
+  handleFileInput($event:any) : void {
+    this.readThis($event.target);
+  }
+
+  readThis(inputValue: any): void {
+    var file:File = inputValue.files[0];
+    var myReader:FileReader = new FileReader();
+
+    myReader.onloadend = (e) => {
+      this.fileToUpload = myReader.result;
+    }
+    myReader.readAsDataURL(file);
   }
 
   editCourse(value:any){
