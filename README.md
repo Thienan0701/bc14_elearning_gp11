@@ -17,7 +17,7 @@
 
 # Link deploy:
 
-http://gp11elearning.surge.sh/
+https://gp11elearning.surge.sh/
 
 # Bc14angularrouting
 
