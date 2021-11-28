@@ -11,7 +11,7 @@ import {Location} from '@angular/common';
 export class DetailCourseComponent implements OnInit {
   detail: any = [];
   id: any;
-  constructor(private activatedRoute : ActivatedRoute, private data:DataService,private _location: Location) { }
+  constructor(private activatedRoute : ActivatedRoute, private data:DataService,private _location: Location, private router:Router) { }
 
   ngOnInit(): void {
     this.getParamsFromUrl();
@@ -35,6 +35,9 @@ export class DetailCourseComponent implements OnInit {
   }
   subcribeCourse(object: any){
     const account: any= localStorage.getItem('UserAdmin');
+    if(!account){
+      this.router.navigate(['/login']);
+    }
     const sub : any = {
       maKhoaHoc : object.maKhoaHoc,
       taiKhoan : JSON.parse(account).taiKhoan

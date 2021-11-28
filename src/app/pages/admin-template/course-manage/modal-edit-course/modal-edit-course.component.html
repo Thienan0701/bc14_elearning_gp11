@@ -10,7 +10,9 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Modal title</h5>
+        <h5 class="modal-title text-primary font-weight-bold">
+          Edit course: {{ courseEdit.maKhoaHoc }}
+        </h5>
         <button
           type="button"
           class="close"
@@ -20,12 +22,99 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">Body</div>
+      <div class="modal-body">
+        <form class="form-outline mb-4" #infoForm="ngForm">
+          <div class="form-group">
+            <label>Coursename:</label>
+            <input
+              type="text"
+              name="tenKhoaHoc"
+              class="form-control"
+              [(ngModel)]="courseEdit.tenKhoaHoc"
+              placeholder="Username"
+              ngModel
+            />
+          </div>
+          <div class="form-group">
+            <label class="text-primary font-italic">Alias:</label>
+            <input
+              type="text"
+              name="biDanh"
+              [(ngModel)]="courseEdit.biDanh"
+              class="form-control"
+              placeholder="Alias"
+              ngModel
+            />
+          </div>
+          <div class="form-group">
+            <label class="text-primary font-italic">Views:</label>
+            <input
+              type="text"
+              name="luotXem"
+              class="form-control"
+              [(ngModel)]="courseEdit.luotXem"
+              placeholder="Luot xem"
+              ngModel
+            />
+          </div>
+          <div class="form-group">
+            <label class="text-primary font-italic">Menu course:</label>
+            <div class="input-group rounded">
+              <select
+                class="custom-select custom-select-md"
+                ngModel
+                name="maDanhMucKhoaHoc"
+                #maDanhMucKhoahoc
+              >
+                <option selected>
+                  {{ courseEdit.danhMucKhoaHoc.maDanhMucKhoahoc }}
+                </option>
+                <ng-container *ngFor="let item of listDanhmuc">
+                  <option value="{{ item.maDanhMuc }}">
+                    {{ item.maDanhMuc }}
+                  </option>
+                </ng-container>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="text-primary font-italic">Image:</label>
+            <input
+              type="file"
+              name="hinhAnh"
+              ngModel
+              class="file-upload"
+              onchange="handleFileInput(event.target.files)"
+            />
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label class="text-primary font-italic">Description:</label>
+                <textarea
+                  ngModel
+                  [(ngModel)]="courseEdit.moTa"
+                  class="form-control rounded-0 w-100"
+                  name="moTa"
+                  style="width: 600px"
+                  rows="4"
+                ></textarea>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">
-          Close
+        <button
+          type="button"
+          class="btn btn-primary"
+          data-dismiss="modal"
+          (click)="editCourse(infoForm.value)"
+        >
+          Save
         </button>
-        <button type="button" class="btn btn-primary">Save</button>
       </div>
     </div>
   </div>

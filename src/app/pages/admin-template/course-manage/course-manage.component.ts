@@ -35,6 +35,9 @@ export class CourseManageComponent implements OnInit {
   listUserWaiting: any=[];
   listUserConfirmed: any = [];
 
+  //Lay khoa hoc can edit
+    courseEdit: any;
+
   subListCoure = new Subscription();
   constructor(private dataservice: DataService, private router: Router) { }
 
@@ -85,7 +88,7 @@ export class CourseManageComponent implements OnInit {
     value.maNhom="GP01";
     const account: any= localStorage.getItem('UserAdmin');
     value.taiKhoanNguoiTao= JSON.parse(account).taiKhoan;
-    this.upLoadImg(btoa(value.hinhAnh));
+    this.upLoadImg(value.hinhAnh);
     this.dataservice.post('QuanLyKhoaHoc/ThemKhoaHoc', value).subscribe((result)=>{
       if (result) {
         this.router.navigateByUrl('/admin/dashboard', { skipLocationChange: true }).then(() => {
@@ -138,6 +141,13 @@ export class CourseManageComponent implements OnInit {
   deleteCourse(maKhoaHoc:any){
     this.dataservice.delete(`QuanLyKhoaHoc/XoaKhoaHoc?MaKhoaHoc=${maKhoaHoc}`).subscribe();
     this.getListofPage(this.number);
+  }
+
+  getEditCourse(maKhoaHoc: any){
+    this.dataservice.get(`QuanLyKhoaHoc/LayThongTinKhoaHoc?maKhoaHoc=${maKhoaHoc}`).subscribe((result:any)=>{
+      this.courseEdit=result;
+      console.log(result);
+    });
   }
 
   ngOnDestroy(){

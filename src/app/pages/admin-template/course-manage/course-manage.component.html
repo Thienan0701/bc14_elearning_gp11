@@ -71,6 +71,7 @@
                           title="Edit"
                           data-toggle="modal"
                           data-target="#modelEditCourse"
+                          (click)="getEditCourse(course.maKhoaHoc)"
                         >
                           <mdb-icon
                             class="text-warning"
@@ -332,4 +333,9 @@
 ></app-modal-subscribe-course>
 
 <!-- Modal edit -->
-<app-modal-edit-course></app-modal-edit-course>
+<ng-container *ngIf="courseEdit">
+  <app-modal-edit-course
+    [courseEdit]="courseEdit"
+    [listDanhmuc]="listDanhmuc"
+  ></app-modal-edit-course>
+</ng-container>
