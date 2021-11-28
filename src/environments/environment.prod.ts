@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'http://elearningnew.cybersoft.edu.vn/api',
+  apiUrl: 'https://elearningnew.cybersoft.edu.vn/api',
 };
